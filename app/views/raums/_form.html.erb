@@ -1,0 +1,45 @@
+<%= form_for(@raum) do |f| %>
+  <% if @raum.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@raum.errors.count, "error") %> prohibited this raum from being saved:</h2>
+
+      <ul>
+      <% @raum.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :raum_id %><br />
+    <%= f.text_field :raum_id %>
+  </div>
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :pers_anz %><br />
+    <%= f.number_field :pers_anz %>
+  </div>
+  <div class="field">
+    <%= f.label :groesse %><br />
+    <%= f.number_field :groesse %>
+  </div>
+  <div class="field">
+    <%= f.label :etage %><br />
+    <%= f.text_field :etage %>
+  </div>
+  <div class="field">
+    <%= f.label :status %><br />
+    <%= f.number_field :status %>
+  </div>
+  <div class="field">
+    <%= f.label :ausstattung %><br />
+    <%= f.text_field :ausstattung %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

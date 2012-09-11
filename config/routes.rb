@@ -1,4 +1,10 @@
 Raumbuchungssystem::Application.routes.draw do
+  resources :kundes
+
+  resources :raums
+
+  resources :ausstattungs
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

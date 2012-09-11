@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Ausst:</b>
+  <%= @ausstattung.ausst_id %>
+</p>
+
+<p>
+  <b>Bezeichnung:</b>
+  <%= @ausstattung.bezeichnung %>
+</p>
+
+
+<%= link_to 'Edit', edit_ausstattung_path(@ausstattung) %> |
+<%= link_to 'Back', ausstattungs_path %>

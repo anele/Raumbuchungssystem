@@ -1,0 +1,45 @@
+<h1>Listing kundes</h1>
+
+<table>
+  <tr>
+    <th>Kunden</th>
+    <th>Firma</th>
+    <th>Name</th>
+    <th>Vorname</th>
+    <th>Tel</th>
+    <th>Fax</th>
+    <th>Email</th>
+    <th>Plz</th>
+    <th>Ort</th>
+    <th>Strasse</th>
+    <th>Haus nr</th>
+    <th>Raum</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @kundes.each do |kunde| %>
+  <tr>
+    <td><%= kunde.kunden_id %></td>
+    <td><%= kunde.firma %></td>
+    <td><%= kunde.name %></td>
+    <td><%= kunde.vorname %></td>
+    <td><%= kunde.tel %></td>
+    <td><%= kunde.fax %></td>
+    <td><%= kunde.email %></td>
+    <td><%= kunde.plz %></td>
+    <td><%= kunde.ort %></td>
+    <td><%= kunde.strasse %></td>
+    <td><%= kunde.haus_nr %></td>
+    <td><%= kunde.raum %></td>
+    <td><%= link_to 'Show', kunde %></td>
+    <td><%= link_to 'Edit', edit_kunde_path(kunde) %></td>
+    <td><%= link_to 'Destroy', kunde, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Kunde', new_kunde_path %>

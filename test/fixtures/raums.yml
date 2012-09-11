@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  raum_id: 
+  name: MyString
+  pers_anz: 1
+  groesse: 1
+  etage: MyString
+  status: 1
+  ausstattung: 
+
+two:
+  raum_id: 
+  name: MyString
+  pers_anz: 1
+  groesse: 1
+  etage: MyString
+  status: 1
+  ausstattung: 

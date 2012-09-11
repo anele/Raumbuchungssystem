@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Raum:</b>
+  <%= @raum.raum_id %>
+</p>
+
+<p>
+  <b>Name:</b>
+  <%= @raum.name %>
+</p>
+
+<p>
+  <b>Pers anz:</b>
+  <%= @raum.pers_anz %>
+</p>
+
+<p>
+  <b>Groesse:</b>
+  <%= @raum.groesse %>
+</p>
+
+<p>
+  <b>Etage:</b>
+  <%= @raum.etage %>
+</p>
+
+<p>
+  <b>Status:</b>
+  <%= @raum.status %>
+</p>
+
+<p>
+  <b>Ausstattung:</b>
+  <%= @raum.ausstattung %>
+</p>
+
+
+<%= link_to 'Edit', edit_raum_path(@raum) %> |
+<%= link_to 'Back', raums_path %>
