@@ -1,7 +1,6 @@
 class CreateRaums < ActiveRecord::Migration
   def change
     create_table :raums do |t|
-      t.primary_key :raum_id
       t.string :name
       t.integer :pers_anz
       t.integer :groesse

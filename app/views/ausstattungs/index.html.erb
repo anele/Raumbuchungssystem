@@ -2,7 +2,6 @@
 
 <table>
   <tr>
-    <th>Ausst</th>
     <th>Bezeichnung</th>
     <th></th>
     <th></th>
@@ -11,7 +10,6 @@
 
 <% @ausstattungs.each do |ausstattung| %>
   <tr>
-    <td><%= ausstattung.ausst_id %></td>
     <td><%= ausstattung.bezeichnung %></td>
     <td><%= link_to 'Show', ausstattung %></td>
     <td><%= link_to 'Edit', edit_ausstattung_path(ausstattung) %></td>

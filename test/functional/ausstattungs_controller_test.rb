@@ -18,7 +18,7 @@ class AusstattungsControllerTest < ActionController::TestCase
 
   test "should create ausstattung" do
     assert_difference('Ausstattung.count') do
-      post :create, ausstattung: { ausst_id: @ausstattung.ausst_id, bezeichnung: @ausstattung.bezeichnung }
+      post :create, ausstattung: { bezeichnung: @ausstattung.bezeichnung }
     end
 
     assert_redirected_to ausstattung_path(assigns(:ausstattung))
@@ -35,7 +35,7 @@ class AusstattungsControllerTest < ActionController::TestCase
   end
 
   test "should update ausstattung" do
-    put :update, id: @ausstattung, ausstattung: { ausst_id: @ausstattung.ausst_id, bezeichnung: @ausstattung.bezeichnung }
+    put :update, id: @ausstattung, ausstattung: { bezeichnung: @ausstattung.bezeichnung }
     assert_redirected_to ausstattung_path(assigns(:ausstattung))
   end
 

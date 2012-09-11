@@ -1,7 +1,6 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
 one:
-  kunden_id: 
   firma: MyString
   name: MyString
   vorname: MyString
@@ -15,7 +14,6 @@ one:
   raum: 
 
 two:
-  kunden_id: 
   firma: MyString
   name: MyString
   vorname: MyString

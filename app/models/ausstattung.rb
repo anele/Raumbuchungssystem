@@ -1,3 +1,3 @@
 class Ausstattung < ActiveRecord::Base
-  attr_accessible :ausst_id, :bezeichnung
+  attr_accessible :bezeichnung
 end

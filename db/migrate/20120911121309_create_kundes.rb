@@ -1,7 +1,6 @@
 class CreateKundes < ActiveRecord::Migration
   def change
     create_table :kundes do |t|
-      t.primary_key :kunden_id
       t.string :firma
       t.string :name
       t.string :vorname
