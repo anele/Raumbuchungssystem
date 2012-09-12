@@ -1,0 +1,25 @@
+<%= form_for(@besitzt) do |f| %>
+  <% if @besitzt.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@besitzt.errors.count, "error") %> prohibited this besitzt from being saved:</h2>
+
+      <ul>
+      <% @besitzt.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :raum_id %><br />
+    <%= f.number_field :raum_id %>
+  </div>
+  <div class="field">
+    <%= f.label :ausstattung_id %><br />
+    <%= f.number_field :ausstattung_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

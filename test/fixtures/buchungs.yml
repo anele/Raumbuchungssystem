@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  buchungsnr: 1
+  anfangszeit: 2012-09-12 10:33:09
+  endzeit: 2012-09-12 10:33:09
+  raum_id: 1
+  kunde_id: 1
+
+two:
+  buchungsnr: 1
+  anfangszeit: 2012-09-12 10:33:09
+  endzeit: 2012-09-12 10:33:09
+  raum_id: 1
+  kunde_id: 1

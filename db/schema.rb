@@ -11,10 +11,27 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120911121309) do
+ActiveRecord::Schema.define(:version => 20120912083309) do
 
   create_table "ausstattungs", :force => true do |t|
     t.string   "bezeichnung"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  create_table "besitzts", :force => true do |t|
+    t.integer  "raum_id"
+    t.integer  "ausstattung_id"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
+
+  create_table "buchungs", :force => true do |t|
+    t.integer  "buchungsnr"
+    t.datetime "anfangszeit"
+    t.datetime "endzeit"
+    t.integer  "raum_id"
+    t.integer  "kunde_id"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
   end
@@ -28,14 +45,11 @@ ActiveRecord::Schema.define(:version => 20120911121309) do
     t.string   "email"
     t.integer  "plz"
     t.string   "ort"
-    t.string   "strasse"
-    t.string   "haus_nr"
+    t.string   "strasse_nr"
     t.integer  "raum_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
-
-  add_index "kundes", ["raum_id"], :name => "index_kundes_on_raum_id"
 
   create_table "raums", :force => true do |t|
     t.string   "name"
@@ -43,11 +57,8 @@ ActiveRecord::Schema.define(:version => 20120911121309) do
     t.integer  "groesse"
     t.string   "etage"
     t.integer  "status"
-    t.integer  "ausstattung_id"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
-
-  add_index "raums", ["ausstattung_id"], :name => "index_raums_on_ausstattung_id"
 
 end

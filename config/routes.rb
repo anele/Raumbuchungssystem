@@ -1,7 +1,11 @@
 Raumbuchungssystem::Application.routes.draw do
-  resources :kundes
+  resources :buchungs
+
+  resources :besitzts
 
   resources :raums
+
+  resources :kundes
 
   resources :ausstattungs
 

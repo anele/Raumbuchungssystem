@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Buchungsnr:</b>
+  <%= @buchung.buchungsnr %>
+</p>
+
+<p>
+  <b>Anfangszeit:</b>
+  <%= @buchung.anfangszeit %>
+</p>
+
+<p>
+  <b>Endzeit:</b>
+  <%= @buchung.endzeit %>
+</p>
+
+<p>
+  <b>Raum:</b>
+  <%= @buchung.raum_id %>
+</p>
+
+<p>
+  <b>Kunde:</b>
+  <%= @buchung.kunde_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_buchung_path(@buchung) %> |
+<%= link_to 'Back', buchungs_path %>

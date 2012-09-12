@@ -10,8 +10,7 @@
     <th>Email</th>
     <th>Plz</th>
     <th>Ort</th>
-    <th>Strasse</th>
-    <th>Haus nr</th>
+    <th>Strasse nr</th>
     <th>Raum</th>
     <th></th>
     <th></th>
@@ -28,9 +27,8 @@
     <td><%= kunde.email %></td>
     <td><%= kunde.plz %></td>
     <td><%= kunde.ort %></td>
-    <td><%= kunde.strasse %></td>
-    <td><%= kunde.haus_nr %></td>
-    <td><%= kunde.raum %></td>
+    <td><%= kunde.strasse_nr %></td>
+    <td><%= kunde.raum_id %></td>
     <td><%= link_to 'Show', kunde %></td>
     <td><%= link_to 'Edit', edit_kunde_path(kunde) %></td>
     <td><%= link_to 'Destroy', kunde, confirm: 'Are you sure?', method: :delete %></td>

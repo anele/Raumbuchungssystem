@@ -6,7 +6,6 @@ one:
   groesse: 1
   etage: MyString
   status: 1
-  ausstattung: 
 
 two:
   name: MyString
@@ -14,4 +13,3 @@ two:
   groesse: 1
   etage: MyString
   status: 1
-  ausstattung: 

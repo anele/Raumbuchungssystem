@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Raum:</b>
+  <%= @besitzt.raum_id %>
+</p>
+
+<p>
+  <b>Ausstattung:</b>
+  <%= @besitzt.ausstattung_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_besitzt_path(@besitzt) %> |
+<%= link_to 'Back', besitzts_path %>

@@ -1,4 +1,4 @@
 class Kunde < ActiveRecord::Base
-  belongs_to :raum
-  attr_accessible :email, :fax, :firma, :haus_nr, :name, :ort, :plz, :strasse, :tel, :vorname
+  attr_accessible :email, :fax, :firma, :name, :ort, :plz, :raum_id, :strasse_nr, :tel, :vorname
+  has_many :buchung
 end

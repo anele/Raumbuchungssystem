@@ -9,9 +9,8 @@ one:
   email: MyString
   plz: 1
   ort: MyString
-  strasse: MyString
-  haus_nr: MyString
-  raum: 
+  strasse_nr: MyString
+  raum_id: 1
 
 two:
   firma: MyString
@@ -22,6 +21,5 @@ two:
   email: MyString
   plz: 1
   ort: MyString
-  strasse: MyString
-  haus_nr: MyString
-  raum: 
+  strasse_nr: MyString
+  raum_id: 1
