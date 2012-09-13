@@ -1,4 +1,6 @@
 Raumbuchungssystem::Application.routes.draw do
+  get "static/index"
+
   resources :buchungs
 
   resources :besitzts
@@ -9,7 +11,10 @@ Raumbuchungssystem::Application.routes.draw do
 
   resources :ausstattungs
   
-  get "static/index"
+get "static/l1_kontakt"  
+get "static/index"
+get "static/l1_buchen"
+root :to => "static#index"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
