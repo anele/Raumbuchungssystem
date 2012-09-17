@@ -14,6 +14,7 @@ Raumbuchungssystem::Application.routes.draw do
 get "static/l1_kontakt"  
 get "static/index"
 get "static/l1_buchen"
+get "raums/index"
 root :to => "static#index"
 
   # The priority is based upon order of creation:
