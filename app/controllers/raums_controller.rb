@@ -1,8 +1,39 @@
 class RaumsController < ApplicationController
+   # GET raums/hello
+  def selected
+   
+
+  end
+  
   # GET /raums
   # GET /raums.json
   def index
     @raums = Raum.all
+    @example_text = params[:r_idx]
+    @ausst = Ausstattung.find_by_sql("Select id,bezeichnung from ausstattungs" )
+    
+    if params[:id] && !params[:id].empty
+   @raum = Raum.find_by_id(:raum_id)  
+   @raum.update_attributes(params[:raum_id])
+   end
+   # if params[:id] && !params[:id].empty
+   #   @raum = Raum.find(params[:id])
+    #  @raum.update_attributes(params[:raum])
+    #elsif
+    #if params[:r_idx] && !session[:r_idx].empty
+    #if params[:r_idx]
+    #  @raums= Raum.find(:all,:conditions=>["id LIKE ?","%#{params[:r_idx]}%"])
+    #  if @raums.size.zero?
+    #    @raums = Raum.find(:all)
+    #  end
+      #@raum = Raum.find_by_id(session[:r_idx])
+    #else
+    #  @raum = Raum.find(:first)
+   # else
+      @raums = Raum.find(:all)  
+   # end
+      
+    #end
 
     respond_to do |format|
       format.html # index.html.erb
@@ -80,4 +111,12 @@ class RaumsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+
+def select
+  
+  @raum = Raum.find(params[:search_string])
+  
+  
+end  
 end

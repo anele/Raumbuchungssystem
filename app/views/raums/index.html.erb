@@ -2,20 +2,52 @@
 <html>
 	<head>
 		<script type="text/javascript">
-			function show_now() {
+			function init(){
+				document.getElementById("raum").selectedIndex=0;
+				
 				var dt = new Date();
 				//var my_time=dt.getYear(); // coment this line if you want to use getFullYear
 				var my_time = dt.getFullYear();
 				// comment this line if you want to use getYear
-
+	
 				for ( i = 0; i < 5; i++) {
-					document.getElementById("Jahr").options[i] = new Option(my_time + i, my_time + i);
+				document.getElementById("Jahr").options[i] = new Option(my_time + i, my_time + i);
+				}			
+			}
+		
+			function set_disabled(){
+				var val =document.getElementById("raum").selectedIndex;	
+				
+				if (val == 0)
+				{					 
+					document.getElementById('info').style.visibility = 'hidden';					
+					document.getElementById('div_ausst').style.visibility='visible';					
+					document.getElementById('div_anz').style.visibility='visible';																								
 				}
+				else
+				{
+					document.getElementById('info').style.backgroundColor= "rgb(230, 210, 211)"; 
+					document.getElementById('info').style.visibility = 'visible';
+					
+					<% @raums.each do |raum| %>
+						if (val ==<%=raum.id%>)
+						{
+							document.getElementById('info').value = 'Lage: ' + '<%=raum.etage%>' + 
+																 '; Grösse: '+ <%=raum.groesse%> + ' m2' +
+																 '; Kapazität: '+ <%=raum.pers_anz%>;
+						}									
+					<%end%>
+												
+					document.getElementById('div_ausst').style.visibility ='hidden';
+					document.getElementById('div_anz').style.visibility ='hidden';				
+				}
+			
+
 			}
 		</script>
 
 	</head>
-	<body onLoad ="show_now();">
+	<body onLoad ="init();">
 		<table cellpadding="0" cellspacing="0" width="900" border="0" align="center" style="margin-top:40px;">
 			<tr align="left" valign="top">
 				<td>
@@ -24,11 +56,11 @@
 
 					<!--HEADLINE	-->
 					<tr>
-						<td><img src="/img/pix_weiss_01.gif" width="215" height="97"></td>
+						<td><img src="/assets/pix_weiss_01.gif" width="215" height="97"></td>
 						<td>&nbsp;</td>
 						<td class="head">Online-Buchung </td>
 						<td>&nbsp;</td>
-						<td><a href="http://www.htwg-konstanz.de" target="_blank"><img src="/img/logo_htwg.jpg" width="245" height="97" border="0"></a></td>
+						<td><a href="http://www.htwg-konstanz.de" target="_blank"><img src="/assets/logo_htwg.jpg" width="245" height="97" border="0"></a></td>
 					</tr>
 
 					<!--UNTERMENUE LINKE SEITE LEVEL 02-->
@@ -41,11 +73,12 @@
 							<a href="l2_anfrage.html" target="_self" class="lev1">Anfrage/Reservierung</a>
 							<a href="l1_kontakt.html" target="_self" class="lev1">Kontakt</a>
 						</div><!--CONTENT TEXTINHALTE / UNTERMENUE LEVEL 03--></td>
-						<td width="30" align="left" valign="top"><img src="/img/pix_weiss_01.gif" width="30" height="100%"></td>
+						<td width="30" align="left" valign="top"><img src="/assets/pix_weiss_01.gif" width="30" height="100%"></td>
 
 						<td width="380" align="left" valign="top">
 						<form action="select.htm">
 							<p>
+								Auswahl Zeitraum<br>
 								<select name="Month">
 									<option value="01">Jan</option>
 									<option value="02">Feb</option>
@@ -65,16 +98,43 @@
 							</p>
 
 							<p>
-								<%= form_tag do%>
-								<div class="field">									
-									<%= select_tag "Raum", options_for_select(options_for_select(@raums.collect{|x| [x.name, x.id]})), :prompt=>"Alle R&auml;ume", 
-									:onchange => "if(this.value == '1'){ alert(@raums.name) }" %>
-									<input id="info" type="textarea" value="" disabled="true" >
+								<%= form_tag do %>								
+								<div class="field">
+									<p>
+										Auswahl Raum
+										<br>
+										<%= select_tag 'raum', options_for_select(@raums.collect{|x| [x.name,x.id]} ), :prompt=>"Alle R&auml;ume",
+										:onchange => "set_disabled();" %>
+										<%=text_field_tag :info, nil, :size => 35, :style => 'border-style: none; color: rgb(55, 88, 115); visibility: hidden;', :disabled => true%>
+									</p>
 								</div>
-								<div>
-									
+								<div id="div_anz" class="field">
+									<p>
+										Anzahl Teilnehmer
+										<br>
+										<%=text_field_tag :pers_anz, nil%>
+								
+									</p>
 								</div>
+								<div id="div_ausst" style="border-width: 2px;">
+									<p>
+										Ausstattung
+										<br>
+										<% for ausstattung in @ausst %>
+										<input type="checkbox" name="ausstattung_<% ausstattung.id%>" value="">
+										<%= ausstattung.bezeichnung%>
+										<br>
+										<%end%>
+									</p>
+								</div>
+								
+								
+
 								<%end%>
+							</p>
+							
+							<p>
+								<%=submit_tag :search%>
 							</p>
 
 							<!--<select id="raum" name="raum">
@@ -85,9 +145,9 @@
 
 						</form></td>
 
-						<td width="30" align="left" valign="top"><img src="/img/pix_weiss_01.gif" width="30" height="100%"></td>
+						<td width="30" align="left" valign="top"><img src="/assets/pix_weiss_01.gif" width="30" height="100%"></td>
 						<!--BILDER RECHTE SEITE	-->
-						<td width="245" align="left" valign="top"><img src="/img/img_see_07.jpg" width="245" height="323">
+						<td width="245" align="left" valign="top"><img src="/assets/img_see_07.jpg" width="245" height="323">
 						<br>
 						<br>
 						Villa am See </td>

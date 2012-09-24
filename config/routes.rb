@@ -15,6 +15,9 @@ get "static/l1_kontakt"
 get "static/index"
 get "static/l1_buchen"
 get "raums/index"
+get "hello" => "raums#hello"
+get "raums/hello" => "raums#hello"
+get "static/home"
 root :to => "static#index"
 
   # The priority is based upon order of creation:
