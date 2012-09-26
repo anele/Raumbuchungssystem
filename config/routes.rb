@@ -18,6 +18,11 @@ get "raums/index"
 get "hello" => "raums#hello"
 get "raums/hello" => "raums#hello"
 get "static/home"
+get "search" =>"raums#search"
+get "raums/search"=>"raums#search" 
+post "search" =>"raums#search"
+post "raums/search"=>"raums#search"
+
 root :to => "static#index"
 
   # The priority is based upon order of creation:

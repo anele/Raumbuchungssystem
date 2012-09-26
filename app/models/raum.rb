@@ -6,12 +6,12 @@ class Raum < ActiveRecord::Base
   
   
   def self.search(search)
-    search_condition= "%" + search + "%"
-    find(:all, :conditions =>['name LIKE ?',  search_condition, search_condition])
+    #search_condition= "%" + search + "%"
+    #find(:all, :conditions =>['name LIKE ?',  search_condition, search_condition])
   end
   
   def self.anzahlTeilnehmer()
-    where pers_anz<=params[:pers_anz]
+    #where pers_anz<=params[:pers_anz]
   end
   
 end

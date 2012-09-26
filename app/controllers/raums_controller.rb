@@ -1,17 +1,19 @@
 class RaumsController < ApplicationController
-   # GET raums/hello
-  def selected
+   # GET raums/search
+ def search()
    
+   @date = Buchung.find_by_sql("Select anfangszeit,endzeit from buchungs,raums where buchungs.raum_id = raums.id")   
 
-  end
+ end
   
   # GET /raums
   # GET /raums.json
   def index
-    @raums = Raum.all
-    @example_text = params[:r_idx]
+    @rau = Raum.search(params[:raum])   
     @ausst = Ausstattung.find_by_sql("Select id,bezeichnung from ausstattungs" )
     
+
+                
     if params[:id] && !params[:id].empty
    @raum = Raum.find_by_id(:raum_id)  
    @raum.update_attributes(params[:raum_id])
@@ -110,13 +112,5 @@ class RaumsController < ApplicationController
       format.html { redirect_to raums_url }
       format.json { head :no_content }
     end
-  end
-
-
-def select
-  
-  @raum = Raum.find(params[:search_string])
-  
-  
-end  
+  end 
 end
