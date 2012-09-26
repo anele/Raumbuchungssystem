@@ -1,5 +1,6 @@
 class StaticController < ApplicationController
   def index
+   
   end
 
   def contact
@@ -7,7 +8,16 @@ class StaticController < ApplicationController
   
   def home
     
-    @raum = Raum.find_by_id(:city_id)
+  end
+    
+  def test
+  
+  end
+  
+  def select
+    @auswahl = params[:text]
+    render :text => @auswahl
+   
   end
 
 end

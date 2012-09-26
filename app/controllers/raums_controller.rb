@@ -1,22 +1,25 @@
 class RaumsController < ApplicationController
+  #Get raums/verfuegbarkeit
+  def verfuegbarkeit 
+    @auswahl = params[:text]    
+    @date = Buchung.where("raum_id = '#{params[:text]}'")  
+  end
+  
    # GET raums/search
- def search()
-   
-   @date = Buchung.find_by_sql("Select anfangszeit,endzeit from buchungs,raums where buchungs.raum_id = raums.id")   
-
+ def search()  
+    @ausst1 = Ausstattung.find(:all)      
  end
   
   # GET /raums
   # GET /raums.json
   def index
-    @rau = Raum.search(params[:raum])   
+       
     @ausst = Ausstattung.find_by_sql("Select id,bezeichnung from ausstattungs" )
-    
-
-                
+    @raums = Raum.find(:all)
+               
     if params[:id] && !params[:id].empty
    @raum = Raum.find_by_id(:raum_id)  
-   @raum.update_attributes(params[:raum_id])
+   @raum.update_attributes(params[:raum])
    end
    # if params[:id] && !params[:id].empty
    #   @raum = Raum.find(params[:id])
@@ -113,4 +116,9 @@ class RaumsController < ApplicationController
       format.json { head :no_content }
     end
   end 
+  
+  def test
+   
+  end
+  
 end

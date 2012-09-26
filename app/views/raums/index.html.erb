@@ -1,3 +1,13 @@
+<!--<%=form_tag :action=>'verfuegbarkeit' do%>
+<%=select_tag :text, "<option>1</option><option>2</option><option>3</option><option>4</option>".html_safe%>
+<%= submit_tag :search%>
+<%end %>
+
+<%=form_tag :action=>'verfuegbarkeit' do%>
+<%=text_field_tag :text%>
+<%= submit_tag :search%>
+<%end %>
+-->
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 	<head>
@@ -7,9 +17,7 @@
 			}
 
 			function set_disabled(){			
-				var val =document.getElementById("raum").selectedIndex;
-				
-				
+				var val =document.getElementById("raum").selectedIndex;			
 				if (val == 0)
 				{
 					document.getElementById('info').style.visibility = 'hidden';
@@ -24,17 +32,14 @@
 					<% @raums.each do |raum| %>					
 					
 					if (val ==<%= raum.id%>)
-					{		
-						document.getElementById('hidden_index').value = '<%=raum.id%>';				
-						<%session[:raum_idx] = raum.id%>					
+					{							
 						document.getElementById('info').value = 'Lage: ' + '<%= raum.etage%>' +	
 																'; Grösse: '+ <%= raum.groesse%> + ' m2' +
 																'; Kapazität: '+ <%= raum.pers_anz%>;
 					}
-					<%end%>
-					
-						document.getElementById('div_ausst').style.visibility = 'hidden';
-						document.getElementById('div_anz').style.visibility = 'hidden';
+					<%end%>					
+					document.getElementById('div_ausst').style.visibility = 'hidden';
+					document.getElementById('div_anz').style.visibility = 'hidden';
 				}
 
 			}
@@ -72,9 +77,8 @@
 							<img src="/assets/pix_weiss_01.gif" width="30" height="100%">
 							</td>
 
-						<td width="380" align="left" valign="top">
-						<form>						
-							<%= form_tag :action =>'search', :method=>'get' do %>
+						<td width="380" align="left" valign="top">											
+							<%=form_tag :action=>'verfuegbarkeit' do%>
 							<p>
 								Auswahl Zeitraum
 								<br>	
@@ -84,18 +88,13 @@
 								<p>								
 									Auswahl Raum
 									<br>
-									<%= select_tag 'raum', options_for_select(@raums.collect{|x| [x.name,x.id]} ), :prompt=>"Alle R&auml;ume",
+									<%= select_tag :text, options_for_select(@raums.collect{|x| [x.name,x.id]} ), :prompt=>"Alle R&auml;ume",
 									:onchange => "set_disabled()"%>
-									<%= text_field_tag :info, nil, :size => 35, :style => 'border-style: none; color: rgb(55, 88, 115); visibility: hidden;', :disabled => true%>
-									<%= text_field_tag :hidden_index, params[:hidden_index] %>
-									
-									
-																	
+									<%= text_field_tag :info, nil, :size => 35, :style => 'border-style: none; color: rgb(55, 88, 115); visibility: hidden;', :disabled => true%>																													
 								</p>
 							</div>
 							<div id="div_anz" class="field">
-								<p>
-								
+								<p>								
 									Anzahl Teilnehmer
 									<br>
 									<%= text_field_tag :pers_anz, nil%>								
@@ -114,13 +113,8 @@
 								</p>
 							</div>
 	
-							<%end%>													
-							<p>
-								
-								<%=button_to "Search", :controller=>'raums', :action =>'search'%>
-								<!--<%= submit_tag "search"%>-->								
-							</p>
-						</form>
+							<%= submit_tag :search%>
+							<%end %>													
 						</td>
 
 						<td width="30" align="left" valign="top"><img src="/assets/pix_weiss_01.gif" width="30" height="100%"></td>
@@ -135,5 +129,4 @@
 
 		</table>
 	</body>
-
 </html>
