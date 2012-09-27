@@ -1,8 +1,8 @@
 class RaumsController < ApplicationController
   #Get raums/verfuegbarkeit
   def verfuegbarkeit 
-    @auswahl = params[:text]    
-    @date = Buchung.where("raum_id = '#{params[:text]}'")  
+    @auswahl = params[:selected_r_index]    
+    @date = Buchung.where("raum_id = '#{params[:selected_r_index]}'")  
   end
   
    # GET raums/search

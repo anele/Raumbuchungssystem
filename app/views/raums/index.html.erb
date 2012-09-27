@@ -1,10 +1,10 @@
 <!--<%=form_tag :action=>'verfuegbarkeit' do%>
-<%=select_tag :text, "<option>1</option><option>2</option><option>3</option><option>4</option>".html_safe%>
+<%=select_tag :selected_r_index, "<option>1</option><option>2</option><option>3</option><option>4</option>".html_safe%>
 <%= submit_tag :search%>
 <%end %>
 
 <%=form_tag :action=>'verfuegbarkeit' do%>
-<%=text_field_tag :text%>
+<%=text_field_tag :selected_r_index%>
 <%= submit_tag :search%>
 <%end %>
 -->
@@ -13,11 +13,11 @@
 	<head>
 		<script type="text/javascript">
 			function init(){
-				document.getElementById("raum").selectedIndex=0;			
+				document.getElementById("selected_r_index").selectedIndex=0;			
 			}
 
 			function set_disabled(){			
-				var val =document.getElementById("raum").selectedIndex;			
+				var val =document.getElementById("selected_r_index").selectedIndex;			
 				if (val == 0)
 				{
 					document.getElementById('info').style.visibility = 'hidden';
@@ -88,7 +88,7 @@
 								<p>								
 									Auswahl Raum
 									<br>
-									<%= select_tag :text, options_for_select(@raums.collect{|x| [x.name,x.id]} ), :prompt=>"Alle R&auml;ume",
+									<%= select_tag :selected_r_index, options_for_select(@raums.collect{|x| [x.name,x.id]} ), :prompt=>"Alle R&auml;ume",
 									:onchange => "set_disabled()"%>
 									<%= text_field_tag :info, nil, :size => 35, :style => 'border-style: none; color: rgb(55, 88, 115); visibility: hidden;', :disabled => true%>																													
 								</p>
