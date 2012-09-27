@@ -1,8 +1,15 @@
 class RaumsController < ApplicationController
+
+  
   #Get raums/verfuegbarkeit
   def verfuegbarkeit 
-    @auswahl = params[:selected_r_index]    
-    @date = Buchung.where("raum_id = '#{params[:selected_r_index]}'")  
+    @month=params[:select_d]['written_on(2i)']
+    @month1=@month.to_i+3
+    @year = params[:select_d]['written_on(1i)']
+    @auswahl = params[:raum][:selected_r_index]
+    
+    @date = Buchung.find(:all,:conditions =>  ['STRFTIME("%m", anfangszeit) = ? And STRFTIME("%Y", anfangszeit) = ? And raum_id = ? ','%02d'% @month,@year,params[:raum][:selected_r_index]])
+    @buchungs = Buchung.find(:all)      
   end
   
    # GET raums/search

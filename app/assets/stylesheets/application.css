@@ -61,7 +61,7 @@ p, td, ul, ol {
 	font-weight: bold;
 	color: #d09896;
 }
-
+.calendar td { height: 100px; width: 14.28%; }
 
 a.textlink {
 	padding: 0px 0px 0px 0px;
@@ -378,3 +378,4 @@ div.villaText {
 
 
 padding:0px 10px 0px 12px;
+ 

@@ -1,23 +1,13 @@
-<!--<%=form_tag :action=>'verfuegbarkeit' do%>
-<%=select_tag :selected_r_index, "<option>1</option><option>2</option><option>3</option><option>4</option>".html_safe%>
-<%= submit_tag :search%>
-<%end %>
-
-<%=form_tag :action=>'verfuegbarkeit' do%>
-<%=text_field_tag :selected_r_index%>
-<%= submit_tag :search%>
-<%end %>
--->
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 	<head>
 		<script type="text/javascript">
 			function init(){
-				document.getElementById("selected_r_index").selectedIndex=0;			
+				document.getElementById("raum_selected_r_index").selectedIndex=0;			
 			}
 
 			function set_disabled(){			
-				var val =document.getElementById("selected_r_index").selectedIndex;			
+				var val =document.getElementById("raum_selected_r_index").selectedIndex;			
 				if (val == 0)
 				{
 					document.getElementById('info').style.visibility = 'hidden';
@@ -41,10 +31,8 @@
 					document.getElementById('div_ausst').style.visibility = 'hidden';
 					document.getElementById('div_anz').style.visibility = 'hidden';
 				}
-
 			}
 		</script>
-
 	</head>
 	<body onLoad ="init()">
 		<table cellpadding="0" cellspacing="0" width="900" border="0" align="center" style="margin-top:40px;">
@@ -52,7 +40,6 @@
 				<td>
 				<table width="900" border="0" cellpadding="0" cellspacing="0" >
 					<!--  HAUPTMENU LEVEL 01-->
-
 					<!--HEADLINE	-->
 					<tr>
 						<td><img src="/assets/pix_weiss_01.gif" width="215" height="97"></td>
@@ -82,14 +69,14 @@
 							<p>
 								Auswahl Zeitraum
 								<br>	
-								<%= date_select("select_d", "written_on", :start_year =>Time.now.year, :end_year =>Time.now.year+5, :discard_day => true, :order => [ :month, :year] )%>
+								<%= date_select("select_d", "written_on", :start_year =>Time.now.year, :end_year =>Time.now.year+5, :discard_day => true, :order => [ :month, :year] )%>								
 							</p>
 							<div class="field">									
 								<p>								
 									Auswahl Raum
-									<br>
-									<%= select_tag :selected_r_index, options_for_select(@raums.collect{|x| [x.name,x.id]} ), :prompt=>"Alle R&auml;ume",
-									:onchange => "set_disabled()"%>
+									<br>									
+									
+									<%= collection_select(:raum, :selected_r_index, Raum.all, :id, :name, {:prompt=>"Alle Räume"}, {:onchange => "set_disabled()"}) %> 
 									<%= text_field_tag :info, nil, :size => 35, :style => 'border-style: none; color: rgb(55, 88, 115); visibility: hidden;', :disabled => true%>																													
 								</p>
 							</div>
