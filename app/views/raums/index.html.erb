@@ -23,9 +23,7 @@
 					
 					if (val ==<%= raum.id%>)
 					{							
-						document.getElementById('info').value = 'Lage: ' + '<%= raum.etage%>' +	
-																'; Grösse: '+ <%= raum.groesse%> + ' m2' +
-																'; Kapazität: '+ <%= raum.pers_anz%>;
+						document.getElementById('info').value = 'Lage: ' + '<%= raum.etage%>' +	'; Grösse: '+ '<%= raum.groesse%>' + ' m2' + '; Kapazität: '+ '<%= raum.pers_anz%>';
 					}
 					<%end%>					
 					document.getElementById('div_ausst').style.visibility = 'hidden';
@@ -34,7 +32,7 @@
 			}
 		</script>
 	</head>
-	<body onLoad ="init()">
+	<body onLoad ='init()'>
 		<table cellpadding="0" cellspacing="0" width="900" border="0" align="center" style="margin-top:40px;">
 			<tr align="left" valign="top">
 				<td>
