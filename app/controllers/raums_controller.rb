@@ -7,8 +7,14 @@ class RaumsController < ApplicationController
     @month1=@month.to_i+3
     @year = params[:select_d]['written_on(1i)']
     @auswahl = params[:raum][:selected_r_index]
-    
-    @date = Buchung.find(:all,:conditions =>  ['STRFTIME("%m", anfangszeit) = ? And STRFTIME("%Y", anfangszeit) = ? And raum_id = ? ','%02d'% @month,@year,params[:raum][:selected_r_index]])
+    #@checkbox=params[:ausstattung]    
+    @a = Besitzt.find(:all, :conditions => ['ausstattung_id in (?)', params[:ausstattung]], :group=>"raum_id").collect(&:raum_id)    
+    #if @auswahl == ""       
+      #@date = Buchung.find(:all,:conditions =>  ['STRFTIME("%m", anfangszeit) = ? And STRFTIME("%Y", anfangszeit) = ? And raum_id in (?) ','%02d'% @month,@year,@a])
+      
+    #elsif
+      @date = Buchung.find(:all,:conditions =>  ['STRFTIME("%m", anfangszeit) = ? And STRFTIME("%Y", anfangszeit) = ? And raum_id = ? ','%02d'% @month,@year,params[:raum][:selected_r_index]])
+    #end
     @buchungs = Buchung.find(:all)      
   end
   

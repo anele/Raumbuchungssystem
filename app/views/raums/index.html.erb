@@ -91,7 +91,7 @@
 									Ausstattung
 									<br>
 									<% for ausstattung in @ausst %>
-										<input type="checkbox" name="ausstattung_<% ausstattung.id%>" value="">
+										<%= check_box_tag 'ausstattung[]', ausstattung.id %>																				
 										<%= ausstattung.bezeichnung%>
 										<br>
 									<%end%>
