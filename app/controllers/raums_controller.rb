@@ -3,18 +3,24 @@ class RaumsController < ApplicationController
   
   #Get raums/verfuegbarkeit
   def verfuegbarkeit 
-    @month=params[:select_d]['written_on(2i)']
+    @auswahl=[]
+    @month=params[:select_d]['written_on(2i)']    
     @month1=@month.to_i+3
     @year = params[:select_d]['written_on(1i)']
-    @auswahl = params[:raum][:selected_r_index]
-    #@checkbox=params[:ausstattung]    
-    @a = Besitzt.find(:all, :conditions => ['ausstattung_id in (?)', params[:ausstattung]], :group=>"raum_id").collect(&:raum_id)    
-    #if @auswahl == ""       
-      #@date = Buchung.find(:all,:conditions =>  ['STRFTIME("%m", anfangszeit) = ? And STRFTIME("%Y", anfangszeit) = ? And raum_id in (?) ','%02d'% @month,@year,@a])
-      
-    #elsif
+    @a = params[:raum][:selected_r_index]
+    #@checkbox=params[:ausstattung]            
+    if @a == ""       
+      if !params[:ausstattung].nil?
+        @auswahl = Besitzt.find(:all, :conditions => ['ausstattung_id in  (?) ', params[:ausstattung]], :group=>"raum_id").collect(&:raum_id)        
+      else
+       
+         @auswahl = Besitzt.find(:all, :group=>"raum_id").collect(&:raum_id)
+      end      
+      @date = Buchung.find(:all,:conditions =>  ['STRFTIME("%m", anfangszeit) = ? And STRFTIME("%Y", anfangszeit) = ? And raum_id in (?)','%02d'% @month,@year,@a])       
+    elsif
+       @auswahl << params[:raum][:selected_r_index]
       @date = Buchung.find(:all,:conditions =>  ['STRFTIME("%m", anfangszeit) = ? And STRFTIME("%Y", anfangszeit) = ? And raum_id = ? ','%02d'% @month,@year,params[:raum][:selected_r_index]])
-    #end
+    end
     @buchungs = Buchung.find(:all)      
   end
   

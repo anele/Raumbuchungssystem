@@ -1,6 +1,6 @@
 
-<%= @a%>
-<%= @date%>
+<%=@auswahl%>
+
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
@@ -17,10 +17,12 @@
         <img src="/assets/pix_weiss_01.gif" width="215" height="97">
        </td>
        <td>&nbsp;</td>
-       <td class="head">Online-Buchung </td>
+       <td class="head">Verf&uuml;gbarkeit pr&uuml;fen <br/><br/><font color="#505873", size="3" ><%=Date::MONTHNAMES[@month.to_i]%> <%=@year%></font></td>
+       
        <td>&nbsp;</td>
        <td><a href="http://www.htwg-konstanz.de" target="_blank"><img src="/assets/logo_htwg.jpg" width="245" height="97" border="0"></a></td>
       </tr>
+      
       <!--UNTERMENUE LINKE SEITE LEVEL 02-->
       <tr>
        <td width="215" valign="top">
@@ -37,13 +39,13 @@
         <img src="/assets/pix_weiss_01.gif" width="30" height="100%">
        </td>
        <td width="380" align="left" valign="top">
-		<div width="100">
-       	 <% for date in @date %>
-		  <% startzeit =date.anfangszeit%>
-		  <% endzeit =date.endzeit%>
-  	
+       	
+		<div width="100" >       	
+
+  		<% for auswahl in @auswahl %>
+  		
 		  <table id='calendar' border = '1px'; bgcolor="#e6d2d3"; >
-		   <caption align="center"><font color="black" ><b><%=startzeit.strftime("%B")%><%=startzeit.strftime("%Y")%></b></font></caption>	
+		   <caption align="center"><font color="black" ><b><%=Raum.find_by_id(auswahl).name%> </b></font></caption>	
 		   <tr border ='1px'; bgcolor="#d09896";>
 			<th>So</th><th>Mo</th>
 			<th>Di</th><th>Mi</th>
@@ -59,17 +61,25 @@
 		    <% d.wday.times do %> <td class='offset'></td> <% end %>
 		   <% end %>
 		   <!--Zeilenumbruch-->
-		   <% if d.wday == 0 %> </tr><tr> <% end %>
-			<% if d.day >=startzeit.day && d.day <=endzeit.day %>
-			 <td bgcolor="red"><font color="black"> <%= d.day %> </font></td> 
-			<% else%>
-			 <!--Ausgabe-->    
-			 <td bgcolor="green"><font color="black"> <%= d.day %> </font></td>
-			<% end %>
-		   <% end %>
+		   <% if d.wday == 0 %> </tr><tr> <% end %>		   	 
+		   		<% if @date.length == 0%>		   		
+		   			<td bgcolor="green"><font color="black"><%= d.day %> </font></td>
+		   		<%else%>
+		   			<% for date in @date %>	       	 			
+			  			<% startzeit =date.anfangszeit%>
+			  			<% endzeit =date.endzeit%>
+				
+						<% if d.day >=startzeit.day && d.day <=endzeit.day %>
+				 			<td bgcolor="red"><font color="black"> <%=d.day%> </font></td>
+				 		<%else%>
+				 		 	<td bgcolor="green"><font color="black"> <%=d.day%> </font></td>
+						<%end%>		
+					<%end%>	
+		   		<% end %>
+		  <% end %> 
   		  </tr>
-		 </table>   	
-		<%end%>				
+		 </table>
+		<% end %>   						
 	   </div>
 	   <p>
 		<%=button_to "Zurück", raums_path, :method=> :get %>				
