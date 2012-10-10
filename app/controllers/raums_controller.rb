@@ -1,51 +1,59 @@
 class RaumsController < ApplicationController
-
-  
   #Get raums/verfuegbarkeit
-  def verfuegbarkeit 
+  def verfuegbarkeit
     @auswahl=[]
     @month=params[:select_d]['written_on(2i)']    
-    @month1=@month.to_i+3
     @year = params[:select_d]['written_on(1i)']
-    @a = params[:raum][:selected_r_index]
-    @b = params[:ausstattung]
-    #@checkbox=params[:ausstattung]            
-    if @a == ""       
-      if !params[:ausstattung].nil?       
-        #@auswahl = Besitzt.find(:all, :conditions => ['ausstattung_id in (?)', params[:ausstattung]], :group=>'raum_id HAVING COUNT(raum_id) >= 1').collect(&:raum_id)
-       @b.each do |p|
-        @auswahl = Besitzt.find(:all, :conditions => ['ausstattung_id in (?)',p]).collect(&:raum_id)
-       end                                        
+    @all_r = params[:raum][:selected_r_index]
+    @all_ausst = params[:ausstattung]
+    
+    #alle Räume
+    if @all_r == ""
+      #mit Ausstattung
+      if !params[:ausstattung].nil?
+        #mit Pers_anz
+        if !params[:pers_anz].empty?              
+          #@auswahl = Besitzt.find(:all, :conditions => ['ausstattung_id in (?)', params[:ausstattung]], :group=>'raum_id HAVING COUNT(raum_id) >= 1').collect(&:raum_id)
+          @all_ausst.each do |ausst|            
+            @auswahl = Besitzt.find(:all, :joins=>:raum, :conditions => ['ausstattung_id in (?) AND pers_anz >= ?',ausst, params[:pers_anz]], :order =>"raum_id ASC").collect(&:raum_id)            
+          end
+        else          
+          @all_ausst.each do |ausst|
+            @auswahl = Besitzt.find(:all, :conditions => ['ausstattung_id in (?)',ausst], :order =>"raum_id ASC").collect(&:raum_id)
+          end
+        end
       else
-       
-         @auswahl = Besitzt.find(:all, :group=>"raum_id").collect(&:raum_id)
-      end      
-      @date = Buchung.find(:all,:conditions =>  ['STRFTIME("%m", anfangszeit) = ? And STRFTIME("%Y", anfangszeit) = ? And raum_id in (?)','%02d'% @month,@year,@a])       
+        #alle Räume ohne Ausstattung
+        if !params[:pers_anz].empty?
+          @auswahl = Raum.find(:all, :conditions => ['pers_anz >= ?', params[:pers_anz]]).collect(&:id)
+        else
+          @auswahl = Besitzt.find(:all, :group=>"raum_id").collect(&:raum_id)  
+        end
+        
+      end
+      @auswahl.each do |auswahl|
+        @date = Buchung.find(:all,:conditions =>  ['STRFTIME("%m", anfangszeit) = ? And STRFTIME("%Y", anfangszeit) = ? And raum_id in (?)','%02d'% @month,@year,@auswahl])
+      end
     elsif
-       @auswahl << params[:raum][:selected_r_index]
+      @auswahl << params[:raum][:selected_r_index]
       @date = Buchung.find(:all,:conditions =>  ['STRFTIME("%m", anfangszeit) = ? And STRFTIME("%Y", anfangszeit) = ? And raum_id = ? ','%02d'% @month,@year,params[:raum][:selected_r_index]])
     end
-    @buchungs = Buchung.find(:all)      
+
   end
-  
-   # GET raums/search
- def search()  
-    @ausst1 = Ausstattung.find(:all)      
- end
-  
+
   # GET /raums
   # GET /raums.json
   def index
-       
+
     @ausst = Ausstattung.find_by_sql("Select id,bezeichnung from ausstattungs" )
     @raums = Raum.find(:all)
-               
+
     if params[:id] && !params[:id].empty
-   @raum = Raum.find_by_id(:raum_id)  
-   @raum.update_attributes(params[:raum])
-   end
-   # if params[:id] && !params[:id].empty
-   #   @raum = Raum.find(params[:id])
+      @raum = Raum.find_by_id(:raum_id)
+      @raum.update_attributes(params[:raum])
+    end
+    # if params[:id] && !params[:id].empty
+    #   @raum = Raum.find(params[:id])
     #  @raum.update_attributes(params[:raum])
     #elsif
     #if params[:r_idx] && !session[:r_idx].empty
@@ -54,13 +62,13 @@ class RaumsController < ApplicationController
     #  if @raums.size.zero?
     #    @raums = Raum.find(:all)
     #  end
-      #@raum = Raum.find_by_id(session[:r_idx])
+    #@raum = Raum.find_by_id(session[:r_idx])
     #else
     #  @raum = Raum.find(:first)
-   # else
-      @raums = Raum.find(:all)  
-   # end
-      
+    # else
+    @raums = Raum.find(:all)
+    # end
+
     #end
 
     respond_to do |format|
@@ -138,10 +146,10 @@ class RaumsController < ApplicationController
       format.html { redirect_to raums_url }
       format.json { head :no_content }
     end
-  end 
-  
-  def test
-   
   end
-  
+
+  def test
+
+  end
+
 end

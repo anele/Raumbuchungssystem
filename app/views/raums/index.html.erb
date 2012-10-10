@@ -82,7 +82,7 @@
 								<p>								
 									Anzahl Teilnehmer
 									<br>
-									<%= text_field_tag :pers_anz, nil%>								
+									<%= text_field_tag :pers_anz, nil, :onblur=>"if (this.value >120){alert('Die Kapazität des größten Raumes: 120 Personen. Bei Teilnahme von mehr als 120 Personen wenden Sie sich bitte an uns');}"%>								
 								</p>
 							</div>
 	
