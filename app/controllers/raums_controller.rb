@@ -8,10 +8,14 @@ class RaumsController < ApplicationController
     @month1=@month.to_i+3
     @year = params[:select_d]['written_on(1i)']
     @a = params[:raum][:selected_r_index]
+    @b = params[:ausstattung]
     #@checkbox=params[:ausstattung]            
     if @a == ""       
-      if !params[:ausstattung].nil?
-        @auswahl = Besitzt.find(:all, :conditions => ['ausstattung_id in  (?) ', params[:ausstattung]], :group=>"raum_id").collect(&:raum_id)        
+      if !params[:ausstattung].nil?       
+        #@auswahl = Besitzt.find(:all, :conditions => ['ausstattung_id in (?)', params[:ausstattung]], :group=>'raum_id HAVING COUNT(raum_id) >= 1').collect(&:raum_id)
+       @b.each do |p|
+        @auswahl = Besitzt.find(:all, :conditions => ['ausstattung_id in (?)',p]).collect(&:raum_id)
+       end                                        
       else
        
          @auswahl = Besitzt.find(:all, :group=>"raum_id").collect(&:raum_id)
