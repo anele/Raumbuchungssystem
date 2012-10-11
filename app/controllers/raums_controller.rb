@@ -31,12 +31,12 @@ class RaumsController < ApplicationController
         end
         
       end
-      @auswahl.each do |auswahl|
-        @date = Buchung.find(:all,:select=>"anfangszeit,endzeit,raum_id", :conditions =>  ['STRFTIME("%m", anfangszeit) = ? And STRFTIME("%Y", anfangszeit) = ? And raum_id in (?)','%02d'% @month,@year,@auswahl])
+        @auswahl.each do |auswahl|
+      
       end
     elsif
       @auswahl << params[:raum][:selected_r_index]
-      @date = Buchung.find(:all,:conditions =>  ['STRFTIME("%m", anfangszeit) = ? And STRFTIME("%Y", anfangszeit) = ? And raum_id = ? ','%02d'% @month,@year,params[:raum][:selected_r_index]])
+     
     end
 
   end

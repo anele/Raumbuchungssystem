@@ -1,125 +1,118 @@
-<%=@auswahl%>
-<%=@date%>
-
+<%=@month%>
+<%=@year%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
-<head>
-	
-	
-</head>
- <body>
-  <table cellpadding="0" cellspacing="0" width="900" border="0" align="center" style="margin-top:40px;">
-   <tr align="left" valign="top">
-    <td>
-     <table width="900" border="0" cellpadding="0" cellspacing="0" >
-      <!--  HAUPTMENU LEVEL 01-->
-      
-      <!--HEADLINE	-->
-      <tr>
-       <td>
-        <img src="/assets/pix_weiss_01.gif" width="215" height="97">
-       </td>
-       <td>&nbsp;</td>
-       <td class="head">Verf&uuml;gbarkeit pr&uuml;fen <br/><br/><font color="#505873", size="3" ><%=Date::MONTHNAMES[@month.to_i]%> <%=@year%></font></td>
-       
-       <td>&nbsp;</td>
-       <td><a href="http://www.htwg-konstanz.de" target="_blank"><img src="/assets/logo_htwg.jpg" width="245" height="97" border="0"></a></td>
-      </tr>
-      
-      <!--UNTERMENUE LINKE SEITE LEVEL 02-->
-      <tr>
-       <td width="215" valign="top">
-        <div id="villaMenus" class="villaMenus">
-         <a href="/static/l1_buchen" target="_self" class="lev1akt">Konferenz- und Tagungsr&auml;ume</a>
-         <a href="/raums" target="_self" class="lev1">Verf&uuml;gbarkeit pr&uuml;fen</a>
-         <a href="l2_online.html" target="_self" class="lev1">Online buchen</a>
-         <a href="l2_anfrage.html" target="_self" class="lev1">Anfrage/Reservierung</a>
-         <a href="l1_kontakt.html" target="_self" class="lev1">Kontakt</a>
-        </div>
-        <!--CONTENT TEXTINHALTE / UNTERMENUE LEVEL 03-->
-       </td>
-       <td width="30" align="left" valign="top">
-        <img src="/assets/pix_weiss_01.gif" width="30" height="100%">
-       </td>
-       <td width="380" align="left" valign="top">
-       	
-		<div width="100" >       	
+	<head>
 
-  		<% for auswahl in @auswahl %>  		 
-		  <table id='calendar' border = '1px'; bgcolor="#e6d2d3"; >
-		   <caption align="center"><font color="black" ><b><%=Raum.find_by_id(auswahl).name%> </b></font></caption>	
-		   <tr border ='1px'; bgcolor="#d09896";>
-			<th>So</th><th>Mo</th>
-			<th>Di</th><th>Mi</th>
-			<th>Do</th><th>Fr</th>
-			<th>Sa</th>
-		   </tr>
-  		  <tr>  		  	
-		  <% @beginning_of_month = Date.civil(@year.to_i, @month.to_i, 1) %>
-		  <% @end_of_month = Date.civil(@year.to_i, @month.to_i, -1) %>
+	</head>
+	<body>
+		<table cellpadding="0" cellspacing="0" width="900" border="0" align="center" style="margin-top:40px;">
+			<tr align="left" valign="top">
+				<td>
+				<table width="900" border="0" cellpadding="0" cellspacing="0" >
+					<!--  HAUPTMENU LEVEL 01-->
 
-		  <% (@beginning_of_month..@end_of_month).each do |d| %>  	
-		   <% if d == @beginning_of_month %>
-		    <% d.wday.times do %> <td class='offset'></td> <% end %>
-		   <% end %>
-		   <!--Zeilenumbruch-->
-		   <% if d.wday == 0 %> </tr><tr> <% end %>		   	 
-		   		<% if @date.length == 0%>		   		
-		   			<td class="gruen"><font color="black"><%= d.day %> </font></td>
-		   		<%else%>
-		   			<% for date in @date %>		   						   							   												   					   				       	 			
-				  			<% startzeit =date.anfangszeit%>
-				  			<% endzeit =date.endzeit%>
-					
-							<% if d.day >=startzeit.day && d.day <=endzeit.day && auswahl == date.raum_id%>
-								<% if endzeit.hour<=12%>
-					 				<td class="gruenrot"><font color="black"> <%=d.day%> </font></td>
-					 			<%elsif startzeit.hour>12%>
-					 				<td class="rotgruen"><font color="black"> <%=d.day%> </font></td>
-					 			<%else%>
-					 				<td class="rot"><font color="black"> <%=d.day%> </font></td>
-					 			<%end%>
-					 		<%elsif  auswahl == date.raum_id%>
-					 		 	<td class="gruen"><font color="black"> <%=d.day%> </font></td>				 							 						 						 	
+					<!--HEADLINE	-->
+					<tr>
+						<td><img src="/assets/pix_weiss_01.gif" width="215" height="97"></td>
+						<td>&nbsp;</td>
+						<td class="head">Verf&uuml;gbarkeit pr&uuml;fen
+						<br/>
+						<br/>
+						<font color="#505873", size="3" ><%= Date::MONTHNAMES[@month.to_i]%> <%= @year%></font></td>
+
+						<td>&nbsp;</td>
+						<td><a href="http://www.htwg-konstanz.de" target="_blank"><img src="/assets/logo_htwg.jpg" width="245" height="97" border="0"></a></td>
+					</tr>
+
+					<!--UNTERMENUE LINKE SEITE LEVEL 02-->
+					<tr>
+						<td width="215" valign="top">
+						<div id="villaMenus" class="villaMenus">
+							<a href="/static/l1_buchen" target="_self" class="lev1akt">Konferenz- und Tagungsr&auml;ume</a>
+							<a href="/raums" target="_self" class="lev1">Verf&uuml;gbarkeit pr&uuml;fen</a>
+							<a href="l2_online.html" target="_self" class="lev1">Online buchen</a>
+							<a href="l2_anfrage.html" target="_self" class="lev1">Anfrage/Reservierung</a>
+							<a href="l1_kontakt.html" target="_self" class="lev1">Kontakt</a>
+						</div><!--CONTENT TEXTINHALTE / UNTERMENUE LEVEL 03--></td>
+						<td width="30" align="left" valign="top"><img src="/assets/pix_weiss_01.gif" width="30" height="100%"></td>
+						<td width="380" align="left" valign="top">
+						<div width="100" >
+
+							<% for auswahl in @auswahl %>				
+								<table id='calendar' border = '1px'; bgcolor="#e6d2d3"; >
+									<caption align="center">
+										<font color="black" ><b><%= Raum.find_by_id(auswahl).name%> </b></font>
+									</caption>
+									<tr border ='1px'; bgcolor="#d09896";>
+										<th>So</th><th>Mo</th>
+										<th>Di</th><th>Mi</th>
+										<th>Do</th><th>Fr</th>
+										<th>Sa</th>
+									</tr>
+									<tr>
+										<% @beginning_of_month = Date.civil(@year.to_i, @month.to_i, 1) %>
+										<% @end_of_month = Date.civil(@year.to_i, @month.to_i, -1) %>		
+										<% (@beginning_of_month..@end_of_month).each do |d| %>											
+											<% @exists = Buchung.find(:all, :select=>"anfangszeit,endzeit", :conditions=>['STRFTIME("%Y", anfangszeit) like ? and STRFTIME("%m", anfangszeit) like ? and STRFTIME("%d", anfangszeit) like ? and STRFTIME("%Y", endzeit) like ? and STRFTIME("%m", endzeit) like ? and STRFTIME("%d", endzeit) like ? and raum_id in (?)',d.year,d.month,d.day,d.year,d.month,d.day,auswahl])%>	
+											<%=@exists%>																																						
+											
+											<% if d == @beginning_of_month %>
+												<% d.wday.times do %> <td class='offset'></td> <% end %>
+											<% end %>
+											<!--Zeilenumbruch-->
+											<% if d.wday == 0 %></tr><tr><% end %>
+												<%i=0%>
+											<%i%>
+											
+											<% for exist in @exists%>
+												<%startday = exist.anfangszeit.day%>
+												<%endday = exist.endzeit.day%>
+											<%end%>
+											<%=startday%>
+											<%=endday%>
+											<% if d.day >= startday.to_i && d.day <= endday.to_i  %>											
+												<% for exist in @exists%>
+													<% if @exists.length >0 && @exists.length < 2%>
+														<% if exist.endzeit.hour<=12%>
+															<td class="gruenrot"><font color="black"> <%= d.day%> </font></td>
+														<% elsif exist.anfangszeit.hour>12%>
+															<td class="rotgruen"><font color="black"> <%= d.day%> </font></td>
+														<% elsif @exists.length>1 || (exist.anfangszeit.hour<12 && exist.endzeit.hour>12)%>
+															<td class="rot"><font color="black"> <%= d.day%> </font></td>
+														<% else%>
+															<td class="rot"><font color="black"> <%= d.day%> </font></td>
+														<% end%>
+													<% else%>
+														<%i=i+1%>
+														<% if i==1%>
+															<td class="rot"><font color="black"> <%= d.day%> </font></td>
+														<%end%>	
+													<%end%>
+												<%end%>
+											<%else%>
+												<td class="gruen"><font color="black"> <%= d.day%> </font></td>
+											<%end%>															
+											<% end %>												
+										</tr>
+									</table>
+								
 							<%end%>
-																			
-					
-							<!--<%@x=[]%>
-		  					<%@x <<date%>
-		  					<%=@date=@date-@x%>				
-							<%=@date%>-->																
-					<%end%>
-					
-															
-		   		<% end %>
-		   		
-		   		
-		  <% end %>
-		  
-		  	  		  
-  		  </tr>
-		 </table>
-		<% end %>   						
-	   </div>
-	   <p>
-		<%=button_to "Zurück", raums_path, :method=> :get %>				
-	   </p>
-
-        </td>
-       <td width="30" align="left" valign="top">
-        <img src="/assets/pix_weiss_01.gif" width="30" height="100%">
-       </td>
-       <!--BILDER RECHTE SEITE	-->
-       <td width="245" align="left" valign="top">
-        <img src="/assets/img_villa_01.jpg" width="245" height="327">
-        <br>
-        <br>
-			Villa am See<br>
-			</td>
-      </tr>
-     </table>
-    </td>
-   </tr>
-  </table>
- </body>
+						</div>
+						<p>
+							<%= button_to "Zurück", raums_path, :method=> :get %>
+						</p></td>
+						<td width="30" align="left" valign="top"><img src="/assets/pix_weiss_01.gif" width="30" height="100%"></td>
+						<!--BILDER RECHTE SEITE	-->
+						<td width="245" align="left" valign="top"><img src="/assets/img_villa_01.jpg" width="245" height="327">
+						<br>
+						<br>
+						Villa am See
+						<br>
+						</td>
+					</tr>
+				</table></td>
+			</tr>
+		</table>
+	</body>
 </html>
