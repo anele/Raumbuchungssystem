@@ -53,9 +53,9 @@
 									<tr>
 										<% @beginning_of_month = Date.civil(@year.to_i, @month.to_i, 1) %>
 										<% @end_of_month = Date.civil(@year.to_i, @month.to_i, -1) %>		
-										<% (@beginning_of_month..@end_of_month).each do |d| %>											
-											<% @exists = Buchung.find(:all, :select=>"anfangszeit,endzeit", :conditions=>['STRFTIME("%Y", anfangszeit) like ? and STRFTIME("%m", anfangszeit) like ? and STRFTIME("%d", anfangszeit) like ? and STRFTIME("%Y", endzeit) like ? and STRFTIME("%m", endzeit) like ? and STRFTIME("%d", endzeit) like ? and raum_id in (?)',d.year,d.month,d.day,d.year,d.month,d.day,auswahl])%>	
-											<%=@exists%>																																						
+										<% (@beginning_of_month..@end_of_month).each do |d| %>
+																																
+											<% @exists = Buchung.find_by_sql("SELECT anfangszeit, endzeit FROM buchungs WHERE (anfangszeit >= '#{(d).to_time.strftime('%Y-%m-%d')}' and endzeit <= '#{(d+1).to_time.strftime('%Y-%m-%d')}' and raum_id = '#{auswahl}'   )")%>																																																										
 											
 											<% if d == @beginning_of_month %>
 												<% d.wday.times do %> <td class='offset'></td> <% end %>
