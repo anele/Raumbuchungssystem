@@ -1,3 +1,22 @@
 // Place all the styles related to the Raums controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+td.rot{
+background-color: red; 
+}
+
+td.gruen{
+background-color: #22B14C; 
+}
+
+td.rotgruen{
+  background-size: 19px;
+  background-image:url(/assets/rotgruen.png);
+  
+}
+
+td.gruenrot{
+  background-image: url(/assets/gruenrot.png);
+  background-size: 19px;
+}

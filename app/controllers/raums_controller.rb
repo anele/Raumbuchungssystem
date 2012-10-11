@@ -32,7 +32,7 @@ class RaumsController < ApplicationController
         
       end
       @auswahl.each do |auswahl|
-        @date = Buchung.find(:all,:conditions =>  ['STRFTIME("%m", anfangszeit) = ? And STRFTIME("%Y", anfangszeit) = ? And raum_id in (?)','%02d'% @month,@year,@auswahl])
+        @date = Buchung.find(:all,:select=>"anfangszeit,endzeit,raum_id", :conditions =>  ['STRFTIME("%m", anfangszeit) = ? And STRFTIME("%Y", anfangszeit) = ? And raum_id in (?)','%02d'% @month,@year,@auswahl])
       end
     elsif
       @auswahl << params[:raum][:selected_r_index]
@@ -40,7 +40,6 @@ class RaumsController < ApplicationController
     end
 
   end
-
   # GET /raums
   # GET /raums.json
   def index
