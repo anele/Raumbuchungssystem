@@ -54,8 +54,9 @@
 										<% @beginning_of_month = Date.civil(@year.to_i, @month.to_i, 1) %>
 										<% @end_of_month = Date.civil(@year.to_i, @month.to_i, -1) %>		
 										<% (@beginning_of_month..@end_of_month).each do |d| %>
-																																
-											<% @exists = Buchung.find_by_sql("SELECT anfangszeit, endzeit FROM buchungs WHERE (anfangszeit >= '#{(d).to_time.strftime('%Y-%m-%d')}' and endzeit <= '#{(d+1).to_time.strftime('%Y-%m-%d')}' and raum_id = '#{auswahl}'   )")%>																																																										
+											
+											<%=buchung(auswahl,d)%>
+																																																																						
 											
 											<% if d == @beginning_of_month %>
 												<% d.wday.times do %> <td class='offset'></td> <% end %>
@@ -68,10 +69,8 @@
 											<% for exist in @exists%>
 												<%startday = exist.anfangszeit.day%>
 												<%endday = exist.endzeit.day%>
-											<%end%>
-											<%=startday%>
-											<%=endday%>
-											<% if d.day >= startday.to_i && d.day <= endday.to_i  %>											
+											<%end%>											
+											<% if d.day >= startday.to_i && d.day <= endday.to_i  %>																				
 												<% for exist in @exists%>
 													<% if @exists.length >0 && @exists.length < 2%>
 														<% if exist.endzeit.hour<=12%>
@@ -87,7 +86,7 @@
 														<%i=i+1%>
 														<% if i==1%>
 															<td class="rot"><font color="black"> <%= d.day%> </font></td>
-														<%end%>	
+														<%end%>														
 													<%end%>
 												<%end%>
 											<%else%>
