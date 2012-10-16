@@ -14,8 +14,8 @@
 					<tr>
 						<td><img src="/assets/pix_weiss_01.gif" width="215" height="97"></td>
 						<td>&nbsp;</td>
-						<td class="head">Online buchen									
-
+						<td class="head">Online buchen
+													
 						<td>&nbsp;</td>
 						<td><a href="http://www.htwg-konstanz.de" target="_blank"><img src="/assets/logo_htwg.jpg" width="245" height="97" border="0"></a></td>
 					</tr>
@@ -24,17 +24,24 @@
 					<tr>
 						<td width="215" valign="top">
 						<div id="villaMenus" class="villaMenus">
-							<a href="/static/l1_buchen" target="_self" class="lev1">Konferenz- und Tagungsr&auml;ume</a>
-							<a href="/raums" target="_self" class="lev1">Verf&uuml;gbarkeit pr&uuml;fen</a>
-							<a href="/buchungs/new" target="_self" class="lev1akt">Online buchen</a>
-							<a href="l2_anfrage.html" target="_self" class="lev1">Anfrage/Reservierung</a>
-							<a href="l1_kontakt.html" target="_self" class="lev1">Kontakt</a>
+							<a href="/kundes/login" target="_self" class="lev1akt">Anmelden</a>
+							<a href="/kundes/registration" target="_self" class="lev1">Registrieren</a>							
 						</div><!--CONTENT TEXTINHALTE / UNTERMENUE LEVEL 03--></td>
 						<td width="30" align="left" valign="top"><img src="/assets/pix_weiss_01.gif" width="30" height="100%"></td>
 						<td width="380" align="left" valign="top">
-						<div width="100" >
-							<%= render 'form' %>
+						<div width="100" >				
+							<p>			
+							<%=label_tag "Kunde"%>
+							<%=text_field_tag :kunde%>
+							</p>
+							<p>
+							<%=label_tag "Passwort"%>
+							<%=text_field_tag :passwort%>
+							</p>	
 						</div>
+						<p>
+							
+						</p>
 						</td>
 						<td width="30" align="left" valign="top"><img src="/assets/pix_weiss_01.gif" width="30" height="100%"></td>
 						<!--BILDER RECHTE SEITE	-->
@@ -54,3 +61,5 @@
 
 
 
+
+<!--<%= link_to 'Back', kundes_path %>-->

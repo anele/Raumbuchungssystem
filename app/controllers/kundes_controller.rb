@@ -1,4 +1,7 @@
 class KundesController < ApplicationController
+  # Get kundes/login
+  def login    
+  end
   # GET /kundes
   # GET /kundes.json
   def index

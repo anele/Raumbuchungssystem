@@ -19,6 +19,7 @@ get "hello" => "raums#hello"
 get "raums/hello" => "raums#hello"
 get "static/home"
 
+
 get "search" =>"raums#search"
 get "raums/search/:id"=>"raums#search" 
 post "search" =>"raums#search"
@@ -32,6 +33,11 @@ get "verfuegbarkeit"=>"raums#verfuegbarkeit"
 get "raums/verfuegbarkeit"=>"raums#verfuegbarkeit"
 post "verfuegbarkeit" =>"raums#verfuegbarkeit"
 post "raums/verfuegbarkeit"=>"raums#verfuegbarkeit"
+
+get "login"=>"kundes#login"
+get "kundes/login"=>"kundes#login"
+post "login" =>"kundes#login"
+post "kundes/login"=>"kundes#login"
 
 root :to => "static#index"
 

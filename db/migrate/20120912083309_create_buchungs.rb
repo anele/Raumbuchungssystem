@@ -9,5 +9,10 @@ class CreateBuchungs < ActiveRecord::Migration
 
       t.timestamps
     end
+    
+        
+      execute("update sqlite_sequence set seq =1000 where name = 'buchungs';")
+     
   end
+  
 end

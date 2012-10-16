@@ -10,7 +10,7 @@ class CreateKundes < ActiveRecord::Migration
       t.integer :plz
       t.string :ort
       t.string :strasse_nr
-      t.integer :raum_id
+      t.integer :buchung_id
 
       t.timestamps
     end

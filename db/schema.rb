@@ -46,7 +46,7 @@ ActiveRecord::Schema.define(:version => 20120912083309) do
     t.integer  "plz"
     t.string   "ort"
     t.string   "strasse_nr"
-    t.integer  "raum_id"
+    t.integer  "buchung_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end

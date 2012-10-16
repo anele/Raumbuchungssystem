@@ -44,7 +44,7 @@ class BuchungsController < ApplicationController
 
     respond_to do |format|
       if @buchung.save
-        format.html { redirect_to @buchung, notice: 'Buchung was successfully created.' }
+        format.html { redirect_to @buchung, notice: 'Buchung war erfolgreich.' }
         format.json { render json: @buchung, status: :created, location: @buchung }
       else
         format.html { render action: "new" }
