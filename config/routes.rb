@@ -25,6 +25,13 @@ get "raums/search/:id"=>"raums#search"
 post "search" =>"raums#search"
 post "raums/search/:id"=>"raums#search"
 
+get "current_user" =>"kundes#current_user"
+get "kundes/current_user/:id"=>"kundes#current_user" 
+post "current_user" =>"kundes#current_user"
+post "kundes/current_user/:id"=>"kundes#current_user"
+
+
+
 get "test"=>"raums#test"
 get "raums/test/"=>"raums#test"
 post "raums/test"

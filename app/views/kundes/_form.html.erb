@@ -11,6 +11,11 @@
     </div>
   <% end %>
 
+	<div class="field">
+    <%= f.label :login %><br />
+    <%= f.text_field :login %>
+  </div>
+
   <div class="field">
     <%= f.label :firma %><br />
     <%= f.text_field :firma %>
@@ -47,7 +52,16 @@
     <%= f.label :strasse_nr %><br />
     <%= f.text_field :strasse_nr %>
   </div>  
+  <div class="field">
+    <%= f.label :password %><br />
+    <%= f.text_field :password %>
+  </div>
+  <div class="field">
+    <%= f.label :password_confirmation %><br />
+    <%= f.text_field :password_confirmation %>
+  </div>
+  
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Bestätigen"%>
   </div>
 <% end %>
