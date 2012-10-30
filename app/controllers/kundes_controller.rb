@@ -1,15 +1,7 @@
 class KundesController < ApplicationController
-  # Get kundes/login
-  def current_user 
-    @kunde = Kunde.find_by_email(params[:email])
-    if user && user.authenticate(params[:password])
-      session[:id] = user.id
-      redirect_to root_url, :notice => "Logged in!"
-    else
-      flash.now.alert = "Invalid email or password"
-      render "new"
-    end
-       
+  # Get kundes/personal
+  def personal 
+          
   end
   # GET /kundes
   # GET /kundes.json
@@ -52,8 +44,13 @@ class KundesController < ApplicationController
   # POST /kundes
   # POST /kundes.json
   def create
-    @kunde = Kunde.new(params[:kunde])
-
+    @kunde = Kunde.find_by_email(params[:email])
+    if @kunde.save      
+      redirect_to root_url, :notice => "Erfolgreich registriert!"
+    else    
+      render "new"
+    end       
+        
     respond_to do |format|
       if @kunde.save
         format.html { redirect_to @kunde, notice: 'Kunde was successfully created.' }

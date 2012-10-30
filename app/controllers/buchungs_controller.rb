@@ -2,8 +2,11 @@ class BuchungsController < ApplicationController
   # GET /buchungs
   # GET /buchungs.json
   def index
-    @buchungs = Buchung.all
-
+    if session[:kunde_id] == nil
+      @buchungs = Buchung.all
+    else
+      @buchungs = Buchung.find(:all, :conditions => ['kunde_id = ?',session[:kunde_id]], :order =>"anfangszeit ASC")
+    end
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @buchungs }

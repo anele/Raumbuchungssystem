@@ -1,12 +1,17 @@
-<h1>Listing buchungs</h1>
-
 <table>
   <tr>
-    <th>Buchungsnr</th>
+   	<th>Buchungsnr</th>
+   	<th></th>
+    <th>Anfangsdatum</th>
+    <th></th>
     <th>Anfangszeit</th>
+    <th></th>
+    <th>Enddatum</th>
+    <th></th>
     <th>Endzeit</th>
-    <th>Raum</th>
-    <th>Kunde</th>
+    <th></th>
+    <th>Raum</th>    
+    <!--<th>Kunde</th>-->
     <th></th>
     <th></th>
     <th></th>
@@ -15,17 +20,24 @@
 <% @buchungs.each do |buchung| %>
   <tr>
     <td><%= buchung.id %></td>
-    <td><%= buchung.anfangszeit %></td>
-    <td><%= buchung.endzeit %></td>
-    <td><%= buchung.raum_id %></td>
-    <td><%= buchung.kunde_id %></td>
+    <td></td>
+    <td><%= buchung.anfangszeit.strftime("%d.%m.%Y") %></td>
+    <td></td>
+    <td><%= buchung.anfangszeit.strftime("%H:%M Uhr") %></td><td></td>    
+    <td><%= buchung.endzeit.strftime("%d.%m.%Y") %></td><td></td>
+    <td><%= buchung.endzeit.strftime("%H:%M Uhr") %></td><td></td>
+    
+    <td>
+    <%@r_name = Raum.find(:all,:select=>"name", :conditions =>['id = ?',buchung.raum_id])%>    
+    <% @r_name.each do |name| %>
+    	<%= name.name %>
+    <% end %>
+    </td>
+    <td></td>
     <td><%= link_to 'Show', buchung %></td>
     <td><%= link_to 'Edit', edit_buchung_path(buchung) %></td>
     <td><%= link_to 'Destroy', buchung, confirm: 'Are you sure?', method: :delete %></td>
   </tr>
 <% end %>
 </table>
-
 <br />
-
-<%= link_to 'New Buchung', new_buchung_path %>

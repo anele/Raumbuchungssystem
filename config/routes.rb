@@ -11,6 +11,8 @@ Raumbuchungssystem::Application.routes.draw do
 
   resources :ausstattungs
   
+  resources :sessions
+  
 get "static/l1_kontakt"  
 get "static/index"
 get "static/l1_buchen"
@@ -29,6 +31,12 @@ get "current_user" =>"kundes#current_user"
 get "kundes/current_user/:id"=>"kundes#current_user" 
 post "current_user" =>"kundes#current_user"
 post "kundes/current_user/:id"=>"kundes#current_user"
+
+get "personal" =>"kundes#personal"
+get "kundes/personal/:id"=>"kundes#personal" 
+post "personal" =>"kundes#personal"
+post "kundes/personal/:id"=>"kundes#personal"
+
 
 
 

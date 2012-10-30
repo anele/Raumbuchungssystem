@@ -23,25 +23,14 @@
 					<tr>
 						<td width="215" valign="top">
 						<div id="villaMenus" class="villaMenus">
-							<a href="/login" target="_self" class="lev1akt">Anmelden</a>
-							<a href="/kundes/new" target="_self" class="lev1">Registrieren</a>							
+							<a href="kundes/<%=session[:kunde_id]%>/edit" target="_self" class="lev1akt">Meine Daten</a>
+							<a href="/buchungs" target="_self" class="lev1">Meine Buchungen</a>							
 						</div><!--CONTENT TEXTINHALTE / UNTERMENUE LEVEL 03--></td>
 						<td width="30" align="left" valign="top"><img src="/assets/pix_weiss_01.gif" width="30" height="100%"></td>
 						<td width="380" align="left" valign="top">
-						<div width="100" >		
-							<%=form_tag :action=>'current_user' do%><!--:action=>'current_user' -->																							
-								<p>			
-								<%=label_tag "E-Mail",nil, :style=>"width: 100px; margin-right:16.5px;"%>
-								<%=text_field_tag :email%>
-								</p>
-								<p>
-								<%=label_tag "Passwort",nil%>
-								<%=text_field_tag :passwort%>
-								</p>
-								
-								<%= submit_tag "Einloggen" %>
-								<!--<%= submit_tag "Einloggen"%>-->
-							<%end%>	
+						<div width="100" >
+							
+
 						</div>
 						<p>
 							
@@ -66,4 +55,3 @@
 
 
 
-<!--<%= link_to 'Back', kundes_path %>-->
