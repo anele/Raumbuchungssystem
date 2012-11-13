@@ -55,12 +55,13 @@
 							
 							<p>
 							  <b>Kunde:</b>
-							  <%= @buchung.kunde_id %>
+							  <!--<%= @buchung.kunde_id%>-->
+							  <%= current_user.name%>
 							</p>
 							<p id="notice"><%= notice %></p>							
 						</div>
 						<p>
-							<%= button_to "Neue Buchung", new_buchung_path, :method=> :get %>
+							<%= button_to "Alle Buchungen", buchungs_path, :method=> :get %>
 						</p>
 						</td>
 						<td width="30" align="left" valign="top"><img src="/assets/pix_weiss_01.gif" width="30" height="100%"></td>

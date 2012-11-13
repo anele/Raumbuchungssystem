@@ -13,21 +13,23 @@
 
   <div class="field">
     <%= f.label :anfangszeit %><br />
-    <%= f.datetime_select :anfangszeit %>
+    <%= f.datetime_select :anfangszeit %>    
   </div>
   <div class="field">
     <%= f.label :endzeit %><br />
-    <%= f.datetime_select :endzeit %>
+    <%= f.datetime_select :endzeit%>
+    
   </div>
   <div class="field">
     <%= f.label :raum_id %><br />
     
-    <%= collection_select(:raum, :selected_id, Raum.all, :id, :name, {:onchange => "document.getElementById('buchung_raum_id').value=this.value"}) %>
-    <%= f.text_field :raum_id %>
+    <!-- {:onchange => ""} -->
+    <%= collection_select(:raum, :selected_id, Raum.all, :id, :name, {:prompt=>"Bitte auswählen"},{:onchange => "document.getElementById('buchung_raum_id').value=this.value"} ) %>
+    <%= f.hidden_field :raum_id %>
   </div>
   <div class="field">
-    <%= f.label :kunde_id %><br />
-    <%= f.number_field :kunde_id %>
+    <!--<%= f.label :kunde_id %><br />-->
+    <%= f.hidden_field :kunde_id, :value=> session[:kunde_id] %>
   </div>
   <div class="actions">
     <%= f.submit "Buchen" %>

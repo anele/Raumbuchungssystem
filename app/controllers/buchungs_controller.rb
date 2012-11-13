@@ -44,8 +44,7 @@ class BuchungsController < ApplicationController
   # POST /buchungs.json
   def create
     @buchung = Buchung.new(params[:buchung])
-
-    respond_to do |format|
+   respond_to do |format|
       if @buchung.save
         format.html { redirect_to @buchung, notice: 'Buchung war erfolgreich.' }
         format.json { render json: @buchung, status: :created, location: @buchung }
@@ -54,6 +53,8 @@ class BuchungsController < ApplicationController
         format.json { render json: @buchung.errors, status: :unprocessable_entity }
       end
     end
+ 
+   
   end
 
   # PUT /buchungs/1

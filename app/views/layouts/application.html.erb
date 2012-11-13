@@ -36,7 +36,7 @@
         	<!--<a href="/login" class="menu1">Login</a>-->
         	<%=link_to "Login", new_session_path%>
         <% else %>
-        	Hallo, <%=link_to(current_user.name,"/personal") %>
+        	Hallo, <%=link_to(current_user.name,:controller => "kundes", :action => "show", :id => current_user.id) %>
         	<%=link_to "(Logout)", session_path(session), :method=> :delete%>
         <% end %>
        </td>
