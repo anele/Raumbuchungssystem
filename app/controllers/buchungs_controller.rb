@@ -1,11 +1,21 @@
 class BuchungsController < ApplicationController
+  # GET /buchungs/l2_anfrage
+   # GET /buchungs/l2_anfrage.json
+   def l2_anfrage
+     @buchung = Buchung.new
+
+    respond_to do |format|
+      format.html # new.html.erb
+      format.json { render json: @buchung }
+    end
+   end
   # GET /buchungs
   # GET /buchungs.json
   def index
     if session[:kunde_id] == nil
       @buchungs = Buchung.all
     else
-      @buchungs = Buchung.find(:all, :conditions => ['kunde_id = ?',session[:kunde_id]], :order =>"anfangszeit ASC")
+      @buchungs = Buchung.find(:all, :conditions => ['kunde_id = ?',session[:kunde_id]], :order =>"anfangszeit ASC")      
     end
     respond_to do |format|
       format.html # index.html.erb
@@ -46,7 +56,11 @@ class BuchungsController < ApplicationController
     @buchung = Buchung.new(params[:buchung])
    respond_to do |format|
       if @buchung.save
-        format.html { redirect_to @buchung, notice: 'Buchung war erfolgreich.' }
+        if @buchung.status=="B"
+          format.html { redirect_to @buchung, notice: 'Buchung war erfolgreich.' }
+        else
+          format.html { redirect_to @buchung, notice: 'Reservierung war erfolgreich.' }
+        end
         format.json { render json: @buchung, status: :created, location: @buchung }
       else
         format.html { render action: "new" }

@@ -54,6 +54,11 @@ get "kundes/login"=>"kundes#login"
 post "login" =>"kundes#login"
 post "kundes/login"=>"kundes#login"
 
+get "l2_anfrage" =>"buchungs#l2_anfrage"
+get "buchungs/l2_anfrage"=>"buchungs#l2_anfrage" 
+post "l2_anfrage" =>"buchungs#l2_anfrage"
+post "buchungs/l2_anfrage"=>"buchungs#l2_anfrage"
+
 root :to => "static#index"
 
   # The priority is based upon order of creation:

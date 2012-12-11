@@ -42,6 +42,7 @@
     <th>Raum</th>    
     <!--<th>Kunde</th>-->
     <th></th>
+     <th>Status*</th>
     <th></th>
     <th></th>
   </tr>
@@ -52,7 +53,7 @@
     <td></td>
     <td style="width: 500px"><%= buchung.anfangszeit.strftime("%d.%m.%Y %H:%M Uhr") %></td>
     <td></td>    
-    <td style="width: 500px"><%= buchung.endzeit.strftime("%d.%m.%Y %H:%M Uhr") %></td><td></td>
+    <td style="width: 500px"><%= buchung.endzeit.strftime("%d.%m.%Y %H:%M Uhr")%></td><td></td>
     <td>
     <%@r_name = Raum.find(:all,:select=>"name", :conditions =>['id = ?',buchung.raum_id])%>    
     <% @r_name.each do |name| %>
@@ -60,16 +61,24 @@
     <% end %>
     </td>
     <td></td>    
+    <td><%= buchung.status %></td>
+    <td></td> 
     
   
-    <td><%=img_button_to "/assets/show.png", buchung%><!--<%= link_to 'Show', buchung %></td>-->
-    <td><%=img_button_to "/assets/edit.png", edit_buchung_path(buchung)%></td><!--<td><%= link_to 'Edit', edit_buchung_path(buchung) %></td>-->
+    <td><%=img_button_to "/assets/show.png", buchung%><!--<%= link_to 'Show', buchung %></td>-->   
     
-    <td><%= img_delete_button_to "/assets/delete.png", buchung%></td>
-    <!--<td><%= link_to 'Destroy', buchung, confirm: 'Are you sure?', method: :delete %></td>-->
+    <td><%= img_delete_button_to "/assets/delete.png", buchung%></td>    
+     <%if buchung.status =='R'%>    	
+    	<td><%=img_button_to "/assets/edit.png", buchung%></td><!--<td><%= link_to 'Edit', edit_buchung_path(buchung) %></td>-->
+    	<td><%=link_to(image_tag("/assets/edit.png", :class=>"img", :size => "15x15"), buchung)%></td>
+    	
+    	
+
+    <% end %>
   </tr>
 <% end %>
 </table>
+<%="*(B=Buchung, R=Reservierung)"%>
 <br />
 
 </div>

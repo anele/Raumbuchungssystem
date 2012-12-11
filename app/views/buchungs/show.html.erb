@@ -27,7 +27,7 @@
 							<a href="/static/l1_buchen" target="_self" class="lev1">Konferenz- und Tagungsr&auml;ume</a>
 							<a href="/raums" target="_self" class="lev1">Verf&uuml;gbarkeit pr&uuml;fen</a>
 							<a href="/buchungs/new" target="_self" class="lev1akt">Online buchen</a>
-							<a href="l2_anfrage.html" target="_self" class="lev1">Anfrage/Reservierung</a>
+							<a href="/l2_anfrage.html" target="_self" class="lev1">Anfrage/Reservierung</a>
 							<a href="l1_kontakt.html" target="_self" class="lev1">Kontakt</a>
 						</div><!--CONTENT TEXTINHALTE / UNTERMENUE LEVEL 03--></td>
 						<td width="30" align="left" valign="top"><img src="/assets/pix_weiss_01.gif" width="30" height="100%"></td>
@@ -56,7 +56,10 @@
 							<p>
 							  <b>Kunde:</b>
 							  <!--<%= @buchung.kunde_id%>-->
-							  <%= current_user.name%>
+							  <%@k_name=Kunde.find(@buchung.kunde_id)%>
+								
+    								<%= @k_name.name %>
+    											  
 							</p>
 							<p id="notice"><%= notice %></p>							
 						</div>

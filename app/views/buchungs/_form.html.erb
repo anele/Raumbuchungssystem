@@ -30,8 +30,16 @@
   <div class="field">
     <!--<%= f.label :kunde_id %><br />-->
     <%= f.hidden_field :kunde_id, :value=> session[:kunde_id] %>
+        
   </div>
   <div class="actions">
-    <%= f.submit "Buchen" %>
+  	<% if params[:action] == 'new' %>
+  		<%= f.hidden_field :status, :value=>'B'%>	
+    	<%= f.submit "Buchen"  %>
+	<% elsif params[:action] == 'l2_anfrage' %>
+		<%= f.hidden_field :status, :value=>'R'%>
+    	<%= f.submit "Reservieren"  %>
+	<% end %>  	
+    
   </div>
 <% end %>

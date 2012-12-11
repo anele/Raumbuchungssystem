@@ -14,8 +14,8 @@
 					<tr>
 						<td><img src="/assets/pix_weiss_01.gif" width="215" height="97"></td>
 						<td>&nbsp;</td>
-						<td class="head">Online buchen
-													
+						<td class="head">Online buchen									
+
 						<td>&nbsp;</td>
 						<td><a href="http://www.htwg-konstanz.de" target="_blank"><img src="/assets/logo_htwg.jpg" width="245" height="97" border="0"></a></td>
 					</tr>
@@ -26,46 +26,15 @@
 						<div id="villaMenus" class="villaMenus">
 							<a href="/static/l1_buchen" target="_self" class="lev1">Konferenz- und Tagungsr&auml;ume</a>
 							<a href="/raums" target="_self" class="lev1">Verf&uuml;gbarkeit pr&uuml;fen</a>
-							<a href="/buchungs/new" target="_self" class="lev1akt">Online buchen</a>
-							<a href="/l2_anfrage.html" target="_self" class="lev1">Anfrage/Reservierung</a>
+							<a href="/buchungs/new" target="_self" class="lev1">Online buchen</a>
+							<a href="/l2_anfrage.html" target="_self" class="lev1akt">Anfrage/Reservierung</a>
 							<a href="l1_kontakt.html" target="_self" class="lev1">Kontakt</a>
 						</div><!--CONTENT TEXTINHALTE / UNTERMENUE LEVEL 03--></td>
 						<td width="30" align="left" valign="top"><img src="/assets/pix_weiss_01.gif" width="30" height="100%"></td>
 						<td width="380" align="left" valign="top">
-						<div width="100" >							
-							<p>
-							  <b>Buchungsnr:</b>
-							  <%= @buchung.id %>
-							</p>
-							
-							<p>
-							  <b>Anfangszeit:</b>
-							  <%= @buchung.anfangszeit %>
-							</p>
-							
-							<p>
-							  <b>Endzeit:</b>
-							  <%= @buchung.endzeit %>
-							</p>
-							
-							<p>
-							  <b>Raum:</b>
-							  <%= @buchung.raum_id %>
-							</p>
-							
-							<p>
-							  <b>Kunde:</b>
-							  <!--<%= @buchung.kunde_id%>-->
-							  <%@k_name=Kunde.find(@buchung.kunde_id)%>
-								
-    								<%= @k_name.name %>
-    											  
-							</p>
-							<p id="notice"><%= notice %></p>							
+						<div width="100" >
+							<%= render 'form' %>
 						</div>
-						<p>
-							<%= button_to "Alle Buchungen", buchungs_path, :method=> :get %>
-						</p>
 						</td>
 						<td width="30" align="left" valign="top"><img src="/assets/pix_weiss_01.gif" width="30" height="100%"></td>
 						<!--BILDER RECHTE SEITE	-->
@@ -81,3 +50,7 @@
 		</table>
 	</body>
 </html>
+
+
+
+
