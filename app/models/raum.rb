@@ -4,5 +4,6 @@ class Raum < ActiveRecord::Base
   has_many :ausstattung, through: :besitzt
   has_many :buchung
      
-  
+  validates_presence_of :etage, :groesse, :name, :pers_anz
+  validates_uniqueness_of :name
 end

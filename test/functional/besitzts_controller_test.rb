@@ -18,7 +18,7 @@ class BesitztsControllerTest < ActionController::TestCase
 
   test "should create besitzt" do
     assert_difference('Besitzt.count') do
-      post :create, besitzt: { ausstattung_id: @besitzt.ausstattung_id, raum_id: @besitzt.raum_id }
+      post :create, besitzt: { :ausstattung_id=>1, :raum_id=>1}
     end
 
     assert_redirected_to besitzt_path(assigns(:besitzt))
@@ -35,7 +35,7 @@ class BesitztsControllerTest < ActionController::TestCase
   end
 
   test "should update besitzt" do
-    put :update, id: @besitzt, besitzt: { ausstattung_id: @besitzt.ausstattung_id, raum_id: @besitzt.raum_id }
+    put :update, id: @besitzt, besitzt: { :ausstattung_id=>1, :raum_id=>4 }
     assert_redirected_to besitzt_path(assigns(:besitzt))
   end
 

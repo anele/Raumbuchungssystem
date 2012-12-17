@@ -53,6 +53,8 @@ get "buchungs/restobooking/:id"=>"buchungs#restobooking"
 post "restobooking" =>"buchungs#restobooking"
 post "buchungs/restobooking/:id"=>"buchungs#restobooking"
 
+
+
 root :to => "static#index"
 
   # The priority is based upon order of creation:

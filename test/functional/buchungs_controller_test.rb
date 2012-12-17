@@ -29,10 +29,10 @@ class BuchungsControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test "should get edit" do
-    get :edit, id: @buchung
-    assert_response :success
-  end
+  #test "should get edit" do
+  #  get :show, id: @buchung
+  #  assert_response :success
+  #end
 
   test "should update buchung" do
     put :update, id: @buchung, buchung: { anfangszeit: @buchung.anfangszeit, buchungsnr: @buchung.buchungsnr, endzeit: @buchung.endzeit, kunde_id: @buchung.kunde_id, raum_id: @buchung.raum_id }

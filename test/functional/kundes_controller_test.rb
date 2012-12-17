@@ -18,7 +18,8 @@ class KundesControllerTest < ActionController::TestCase
 
   test "should create kunde" do
     assert_difference('Kunde.count') do
-      post :create, kunde: { email: @kunde.email, fax: @kunde.fax, firma: @kunde.firma, name: @kunde.name, ort: @kunde.ort, plz: @kunde.plz, raum_id: @kunde.raum_id, strasse_nr: @kunde.strasse_nr, tel: @kunde.tel, vorname: @kunde.vorname }
+      #post :create, kunde: {password: @kunde.password, password_confirmation:  @kunde.password_confirmation, email: @kunde.email, fax: @kunde.fax, firma: @kunde.firma, name: @kunde.name, ort: @kunde.ort, plz: @kunde.plz,  strasse_nr: @kunde.strasse_nr,vorname: @kunde.vorname, tel: @kunde.tel}
+      post :create, kunde: {:password =>"1234", :password_confirmation=>"1234", :email => "Muster@web.de", :fax => "077322222", :firma => "Muster", :name => "Mustermann", :ort => "radolfzell", :plz =>78315,  :strasse_nr =>"Musterstr. 7", :vorname =>"Muster", :tel =>"077322222"}
     end
 
     assert_redirected_to kunde_path(assigns(:kunde))
@@ -35,7 +36,8 @@ class KundesControllerTest < ActionController::TestCase
   end
 
   test "should update kunde" do
-    put :update, id: @kunde, kunde: { email: @kunde.email, fax: @kunde.fax, firma: @kunde.firma, name: @kunde.name, ort: @kunde.ort, plz: @kunde.plz, raum_id: @kunde.raum_id, strasse_nr: @kunde.strasse_nr, tel: @kunde.tel, vorname: @kunde.vorname }
+    #put :update, id: @kunde, kunde: {password: @kunde.password, password_confirmation:  @kunde.password_confirmation, email: @kunde.email, fax: @kunde.fax, firma: @kunde.firma, name: @kunde.name, ort: @kunde.ort, plz: @kunde.plz,  strasse_nr: @kunde.strasse_nr,vorname: @kunde.vorname, tel: @kunde.tel}
+    put :update, id: @kunde, kunde: {:password =>"12345", :password_confirmation=>"12345", :email => "test@web.de", :fax => "077321111", :firma => "Test", :name => "Test", :ort => "Radolfzell", :plz =>78315, :strasse_nr =>"Teststr. 5",:vorname =>"Test", :tel =>"077321111"}    
     assert_redirected_to kunde_path(assigns(:kunde))
   end
 

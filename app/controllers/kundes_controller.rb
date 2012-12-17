@@ -42,11 +42,20 @@ class KundesController < ApplicationController
   def create
 
     @kunde = Kunde.new(params[:kunde])
-    if @kunde.save      
-      redirect_to root_url, :notice => "Erfolgreich registriert!"
-    else    
-      render "new"
-    end       
+    respond_to do |format|
+      if @kunde.save
+        format.html { redirect_to @kunde, notice: 'Kunde was successfully created.' }
+        format.json { render json: @kunde, status: :created, location: @raum }
+      else
+        format.html { render action: "new" }
+        format.json { render json: @kunde.errors, status: :unprocessable_entity }
+      end
+    end
+    #if @kunde.save      
+    #  redirect_to root_url, :notice => "Erfolgreich registriert!"
+    #else    
+    #  render "new"
+    #end       
            
   end
 

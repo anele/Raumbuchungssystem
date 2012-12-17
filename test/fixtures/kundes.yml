@@ -6,11 +6,12 @@ one:
   vorname: MyString
   tel: MyString
   fax: MyString
-  email: MyString
+  email: aykurun@web.de
   plz: 1
   ort: MyString
   strasse_nr: MyString
-  raum_id: 1
+  password: 12345
+  password_confirmation: 12345
 
 two:
   firma: MyString
@@ -22,4 +23,5 @@ two:
   plz: 1
   ort: MyString
   strasse_nr: MyString
-  raum_id: 1
+  password: MyString
+  password_confirmation: MyString

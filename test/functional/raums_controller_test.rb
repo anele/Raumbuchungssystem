@@ -18,7 +18,8 @@ class RaumsControllerTest < ActionController::TestCase
 
   test "should create raum" do
     assert_difference('Raum.count') do
-      post :create, raum: { etage: @raum.etage, groesse: @raum.groesse, name: @raum.name, pers_anz: @raum.pers_anz, status: @raum.status }
+      #post :create, raum: { etage: @raum.etage, groesse: @raum.groesse, name: @raum.name, pers_anz: @raum.pers_anz, status: @raum.status }
+      post :create, raum: { :etage =>"EG", :groesse=>15, :name=>"test", :pers_anz=> 10, :status=>0}
     end
 
     assert_redirected_to raum_path(assigns(:raum))
@@ -35,7 +36,8 @@ class RaumsControllerTest < ActionController::TestCase
   end
 
   test "should update raum" do
-    put :update, id: @raum, raum: { etage: @raum.etage, groesse: @raum.groesse, name: @raum.name, pers_anz: @raum.pers_anz, status: @raum.status }
+    #put :update, id: @raum, raum: { etage: @raum.etage, groesse: @raum.groesse, name: @raum.name, pers_anz: @raum.pers_anz, status: @raum.status }
+    put :update, id: @raum, raum: { :etage =>"EG", :groesse=>15, :name=>"test", :pers_anz=> 10, :status=>0}
     assert_redirected_to raum_path(assigns(:raum))
   end
 

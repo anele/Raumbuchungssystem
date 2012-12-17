@@ -1,4 +1,3 @@
-<%=@bookexists%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 	<head>
@@ -52,16 +51,7 @@
 							<p>
 							  <b>Raum:</b>
 							  <%= @buchung.raum_id %>
-							</p>
-							
-							<p>
-							  <b>Kunde:</b>
-							  <!--<%= @buchung.kunde_id%>-->
-							  <%@k_name=Kunde.find(@buchung.kunde_id)%>
-								
-    								<%= @k_name.name %>
-    											  
-							</p>
+							</p>													
 							<p id="notice"><%= notice %></p>							
 						</div>
 						<p>

@@ -47,7 +47,7 @@ class BuchungsController < ApplicationController
 
   # GET /buchungs/1/edit
   def edit    
-    @buchung = Buchung.find(params[:id])
+    @buchung = Buchung.find(params[:id])    
   end
 
   # POST /buchungs
