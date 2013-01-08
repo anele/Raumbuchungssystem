@@ -1,7 +1,6 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 	<head>
-
 	</head>
 	<body>
 		<table cellpadding="0" cellspacing="0" width="900" border="0" align="center" style="margin-top:40px;">
@@ -46,7 +45,6 @@
     <th></th>
     <th></th>
   </tr>
-
 <% @buchungs.each do |buchung| %>
   <tr>
     <td><%= buchung.id %></td>
@@ -69,10 +67,10 @@
     
     <td><%= img_delete_button_to "/assets/delete.png", buchung%></td>    
      <%if buchung.status =='R'%>    	
-    	<td><%=img_button_to "/assets/edit.png", buchung%></td><!--<td><%= link_to 'Edit', edit_buchung_path(buchung) %></td>-->
-    	<td><%=link_to(image_tag("/assets/edit.png", :class=>"img", :size => "15x15"), buchung)%></td>
-    	
-    	
+    	<!--<td><%=img_button_to "/assets/edit.png", buchung%></td>--><!--<td><%= link_to 'Edit', edit_buchung_path(buchung) %></td>-->    	    	    	
+    	<td><%=link_to(image_tag("/assets/edit.png", :class=>"img", :size => "15x15",:title=>"Verbindlich buchen"),{:controller=>"buchungs", :action=>"restobooking",:id=>buchung.id},{:confirm=>"Verbindlich buchen?"})%></td>
+    	    	   
+
 
     <% end %>
   </tr>

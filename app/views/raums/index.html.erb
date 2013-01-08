@@ -22,6 +22,7 @@
 					<% @raums.each do |raum| %>					
 					
 					if (val ==<%= raum.id%>)
+					
 					{							
 						document.getElementById('info').value = 'Lage: ' + '<%= raum.etage%>' +	'; Grösse: '+ '<%= raum.groesse%>' + ' m2' + '; Kapazität: '+ '<%= raum.pers_anz%>';
 					}

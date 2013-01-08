@@ -59,6 +59,12 @@ get "buchungs/l2_anfrage"=>"buchungs#l2_anfrage"
 post "l2_anfrage" =>"buchungs#l2_anfrage"
 post "buchungs/l2_anfrage"=>"buchungs#l2_anfrage"
 
+
+get "restobooking" =>"buchungs#restobooking"
+get "buchungs/restobooking/:id"=>"buchungs#restobooking" 
+post "restobooking" =>"buchungs#restobooking"
+post "buchungs/restobooking/:id"=>"buchungs#restobooking"
+
 root :to => "static#index"
 
   # The priority is based upon order of creation:

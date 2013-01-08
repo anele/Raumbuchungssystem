@@ -4,4 +4,5 @@ class Buchung < ActiveRecord::Base
   belongs_to :raum
   
  
+ 
 end

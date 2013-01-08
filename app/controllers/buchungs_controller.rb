@@ -36,7 +36,7 @@ class BuchungsController < ApplicationController
 
   # GET /buchungs/new
   # GET /buchungs/new.json
-  def new
+  def new    
     @buchung = Buchung.new
 
     respond_to do |format|
@@ -46,7 +46,7 @@ class BuchungsController < ApplicationController
   end
 
   # GET /buchungs/1/edit
-  def edit
+  def edit    
     @buchung = Buchung.find(params[:id])
   end
 
@@ -89,7 +89,7 @@ class BuchungsController < ApplicationController
 
   # DELETE /buchungs/1
   # DELETE /buchungs/1.json
-  def destroy
+  def destroy    
     @buchung = Buchung.find(params[:id])
     @buchung.destroy
 
@@ -97,5 +97,22 @@ class BuchungsController < ApplicationController
       format.html { redirect_to buchungs_url }
       format.json { head :no_content }
     end
+  end
+  
+   # PUT /buchungs/1
+  # PUT /buchungs/1.json
+  def restobooking
+    @buchung = Buchung.find(params[:id])
+    @buchung.status='B'  
+    
+    respond_to do |format|
+      if @buchung.update_attributes(params[:buchung])
+        format.html { redirect_to @buchung, notice: 'Buchung was successfully updated.' }
+        format.json { head :no_content }
+      else
+        format.html { render action: "edit" }
+        format.json { render json: @buchung.errors, status: :unprocessable_entity }
+      end
+    end  
   end
 end
