@@ -44,22 +44,14 @@ class KundesController < ApplicationController
   # POST /kundes
   # POST /kundes.json
   def create
-    @kunde = Kunde.find_by_email(params[:email])
+
+    @kunde = Kunde.new(params[:kunde])
     if @kunde.save      
       redirect_to root_url, :notice => "Erfolgreich registriert!"
     else    
       render "new"
     end       
-        
-    respond_to do |format|
-      if @kunde.save
-        format.html { redirect_to @kunde, notice: 'Kunde was successfully created.' }
-        format.json { render json: @kunde, status: :created, location: @kunde }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @kunde.errors, status: :unprocessable_entity }
-      end
-    end
+           
   end
 
   # PUT /kundes/1

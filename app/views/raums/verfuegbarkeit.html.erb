@@ -48,13 +48,17 @@
 										<th>Do</th><th>Fr</th>
 										<th>Sa</th>
 									</tr>
-									<tr>
+									<tr>										
 										<% @beginning_of_month = Date.civil(@year.to_i, @month.to_i, 1) %>
 										<% @end_of_month = Date.civil(@year.to_i, @month.to_i, -1) %>	
 										
 											
-										<% (@beginning_of_month..@end_of_month).each do |d| %>											
-											<%=buchung(auswahl,d)%>																																																																																	
+										<% (@beginning_of_month..@end_of_month).each do |d| %>
+										<%=buchung(auswahl,d)%>																						
+     						
+   			
+  
+										    <%=@exists%>																																																																														
 											<% if d == @beginning_of_month %>
 												<% d.wday.times do %> <td class='offset'></td> <% end %>
 											<% end %>
@@ -62,30 +66,87 @@
 											<% if d.wday == 0 %></tr><tr><% end %>
 																																		
 											<% for exist in @exists%>
-												<%=startday = exist.anfangszeit.day%>
+												<!--<%=startday = exist.anfangszeit.day%>-->
 												<%endday = exist.endzeit.day%>
-											<%end%>											
-											
-											<% if d.day >= startday.to_i && d.day <= endday.to_i  %>											
+												<%status = exist.status%>
+											<%end%>																						
+											<% if d.day >= startday.to_i && d.day <= endday.to_i  %>
 												<%if @exists.length==1%>
-													<%if startday == endday%>
-														<% for exist in @exists%>
-														<%=exist.anfangszeit.hour%>															
-															<% if exist.endzeit.hour<=12%>
-																<td class="gruenrot"><font color="black"> <%= d.day%> </font></td>
-															<% elsif exist.anfangszeit.hour>12%>
-																<td class="rotgruen"><font color="black"> <%= d.day%> </font></td>
-															<% elsif @exists.length>1 || (exist.anfangszeit.hour<12 && exist.endzeit.hour>12)%>
-																<td class="rot"><font color="black"> <%= d.day%> </font></td>
-															<% else%>															
-																<td class="rot"><font color="black"> <%= d.day%> </font></td>
-															<% end%>															
+														<%if startday == endday%>
+															<% for exist in @exists%>
+																<% if exist.status =='B'%>
+																<%="test zzz"%>																	
+																	<%=exist.anfangszeit.hour%>
+																	<%=exist.endzeit.hour%>
+																	<% if exist.endzeit.hour<=12%>
+																		<td class="gruenrot"><font color="black"> <%= d.day%> </font></td>
+																	<% elsif exist.anfangszeit.hour>12%>
+																		<td class="rotgruen"><font color="black"> <%= d.day%> </font></td>
+																	<% elsif exist.anfangszeit.hour<12 && exist.endzeit.hour>12%>
+																		<td class="rot"><font color="black"> <%= d.day%> </font></td>
+																	<% else%> 
+																		<td class="rot"><font color="black"> <%= d.day%> </font></td>
+																	<% end%>
+																<% elsif exist.status =='R'%>
+																	<%=exist.anfangszeit.hour%>	
+																	<%=exist.endzeit.hour%>													
+																	<% if exist.endzeit.hour<=12%>
+																		<td class="gruenorange"><font color="black"> <%= d.day%> </font></td>
+																	<% elsif exist.anfangszeit.hour>12%>
+																		<td class="orangegruen"><font color="black"> <%= d.day%> </font></td>
+																	<% elsif exist.anfangszeit.hour<12 && exist.endzeit.hour>12%>																		
+																		<td class="orange"><font color="black"> <%= d.day%> </font></td>
+																	<% else%>															
+																		<td class="orange"><font color="black"> <%= d.day%> </font></td>
+																	<% end%>																																												
+																<%end%> 
+															<%end%>
+														<%elsif startday < endday%> 
+														
+															<% if status =='B'%>
+														<%="test yyy"%>																			
+																<% if d.day == startday.to_i%>
+																	<% if exist.anfangszeit.hour>12%>
+																		<td class="rotgruen"><font color="black"> <%= d.day%> </font></td>
+																	<% else%> 
+																		<td class="rot"><font color="black"> <%= d.day%> </font></td>
+																	<% end%>
+																<% elsif d.day == endday.to_i%> 
+																	<% if exist.endzeit.hour<=12%>
+																		<td class="gruenrot"><font color="black"> <%= d.day%> </font></td>
+																	<% else%> 
+																		<td class="rot"><font color="black"> <%= d.day%> </font></td>
+																	<% end%>
+																<% else%> 
+																	<td class="rot"><font color="black"> <%= d.day%> </font></td>
+																<% end%>
+															<%elsif status=='R'%>
+																<% if d.day == startday.to_i%>
+																	<% if exist.anfangszeit.hour>12%>
+																		<td class="orangegruen"><font color="black"> <%= d.day%> </font></td>
+																	<% else%> 
+																		<td class="orange"><font color="black"> <%= d.day%> </font></td>
+																	<% end%>
+																<% elsif d.day == endday.to_i%> 
+																	<% if exist.endzeit.hour<=12%>
+																		<td class="gruenorange"><font color="black"> <%= d.day%> </font></td>
+																	<% else%> 
+																		<td class="orange"><font color="black"> <%= d.day%> </font></td>
+																	<% end%>
+																<% else%> 
+																	<td class="orange"><font color="black"> <%= d.day%> </font></td>
+																<% end%>
+															<% end%>
+														
 														<%end%>
-													<%elsif startday < endday%>													
-														<td class="rot"><font color="black"> <%= d.day%> </font></td>													
-													<%end%>
+
 												<%elsif @exists.length==2%>
-													<td class="rot"><font color="black"> <%= d.day%> </font></td>
+												<%="test xxx"%>																																											
+													<% if status =='B'%>
+														<td class="rot"><font color="black"> <%= d.day%> </font></td>														
+													<%elsif status=='R'%>
+														<td class="orange"><font color="black"> <%= d.day%> </font></td>
+													<%end%>
 												<%end%>																																																						
 											<%else%>
 												<td class="gruen"><font color="black"> <%= d.day%> </font></td>
