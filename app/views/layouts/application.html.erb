@@ -33,7 +33,6 @@
         <a href="/static/l1_buchen" class="menu1">Online-Buchung</a>
         <a href="/static/l1_kontakt" class="menu1">Kontakt</a>
         <% if current_user.nil?%>
-        	<!--<a href="/login" class="menu1">Login</a>-->
         	<%=link_to "Login", new_session_path%>
         <% else %>
         	Hallo, <%=link_to(current_user.name,:controller => "kundes", :action => "show", :id => current_user.id) %>

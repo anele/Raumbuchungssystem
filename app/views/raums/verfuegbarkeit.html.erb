@@ -1,3 +1,4 @@
+<%=Date.today%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 	<head>
@@ -54,11 +55,8 @@
 										
 											
 										<% (@beginning_of_month..@end_of_month).each do |d| %>
-										<%=buchung(auswahl,d)%>																						
-     						
-   			
-  
-										    <%=@exists%>																																																																														
+										<%buchung(auswahl,d)%>																						
+     						   																																																																													
 											<% if d == @beginning_of_month %>
 												<% d.wday.times do %> <td class='offset'></td> <% end %>
 											<% end %>
@@ -72,12 +70,10 @@
 											<%end%>																						
 											<% if d.day >= startday.to_i && d.day <= endday.to_i  %>
 												<%if @exists.length==1%>
+												 
 														<%if startday == endday%>
-															<% for exist in @exists%>
-																<% if exist.status =='B'%>
-																<%="test zzz"%>																	
-																	<%=exist.anfangszeit.hour%>
-																	<%=exist.endzeit.hour%>
+															<% for exist in @exists%>															
+																<% if exist.status =='B'%>																
 																	<% if exist.endzeit.hour<=12%>
 																		<td class="gruenrot"><font color="black"> <%= d.day%> </font></td>
 																	<% elsif exist.anfangszeit.hour>12%>
@@ -87,9 +83,7 @@
 																	<% else%> 
 																		<td class="rot"><font color="black"> <%= d.day%> </font></td>
 																	<% end%>
-																<% elsif exist.status =='R'%>
-																	<%=exist.anfangszeit.hour%>	
-																	<%=exist.endzeit.hour%>													
+																<% elsif exist.status =='R'%>																																												
 																	<% if exist.endzeit.hour<=12%>
 																		<td class="gruenorange"><font color="black"> <%= d.day%> </font></td>
 																	<% elsif exist.anfangszeit.hour>12%>
@@ -103,8 +97,7 @@
 															<%end%>
 														<%elsif startday < endday%> 
 														
-															<% if status =='B'%>
-														<%="test yyy"%>																			
+															<% if status =='B'%>																		
 																<% if d.day == startday.to_i%>
 																	<% if exist.anfangszeit.hour>12%>
 																		<td class="rotgruen"><font color="black"> <%= d.day%> </font></td>
@@ -140,8 +133,7 @@
 														
 														<%end%>
 
-												<%elsif @exists.length==2%>
-												<%="test xxx"%>																																											
+												<%elsif @exists.length==2%>																																										
 													<% if status =='B'%>
 														<td class="rot"><font color="black"> <%= d.day%> </font></td>														
 													<%elsif status=='R'%>

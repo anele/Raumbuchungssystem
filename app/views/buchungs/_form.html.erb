@@ -32,14 +32,17 @@
     <%= f.hidden_field :kunde_id, :value=> session[:kunde_id] %>
         
   </div>
+  <%= f.hidden_field :status%>
   <div class="actions">
   	<% if params[:action] == 'new' %>
-  		<%= f.hidden_field :status, :value=>'B'%>	
-    	<%= f.submit "Buchen"  %>
-	<% elsif params[:action] == 'l2_anfrage' %>
+  	<%= f.hidden_field :status, :value=>'B'%>
+  		<!--<%= f.text_field :status, :value=>'B'%>	
+    	<%= f.submit "Buchen"  %>-->    	
+	<% elsif params[:action] == 'l2_anfrage'%>
 		<%= f.hidden_field :status, :value=>'R'%>
-    	<%= f.submit "Reservieren"  %>
-	<% end %>  	
-    
-  </div>
+    	<!--<%= f.submit "Reservieren"  %>-->   
+	<% end %>
+</div>
+<%= f.submit 'Buchen/Reservieren'%>
+
 <% end %>
