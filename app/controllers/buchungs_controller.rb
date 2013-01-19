@@ -53,27 +53,10 @@ class BuchungsController < ApplicationController
   # POST /buchungs
   # POST /buchungs.json
   def create
-    
-    @start_date = DateTime.civil(params[:buchung]["anfangszeit(1i)"].to_i,
-                         params[:buchung]["anfangszeit(2i)"].to_i,
-                         params[:buchung]["anfangszeit(3i)"].to_i,
-                         params[:buchung]["anfangszeit(4i)"].to_i,
-                         params[:buchung]["anfangszeit(5i)"].to_i)
-
-    @end_date = DateTime.civil(params[:buchung]["endzeit(1i)"].to_i,
-                         params[:buchung]["endzeit(2i)"].to_i,
-                         params[:buchung]["endzeit(3i)"].to_i,
-                         params[:buchung]["endzeit(4i)"].to_i,
-                         params[:buchung]["endzeit(5i)"].to_i).utc
-
-    @start_date= Time.zone.parse(@start_date.to_s).utc
-    @end_date= Time.zone.parse(@end_date.to_s).utc
-    @bookexists = Buchung.find(:all, :select=>"anfangszeit,endzeit,status", :conditions=>['anfangszeit >= ? and endzeit <= ?',@start_date,@end_date])
+  
    
-       if @bookexists.length==0
-      @buchung = Buchung.new(params[:buchung])
-        
-      respond_to do |format|
+   respond_to do |format|      
+        @buchung = Buchung.new(params[:buchung])      
         if @buchung.save              
           if @buchung.status=="B"
             format.html { redirect_to @buchung, notice: 'Buchung war erfolgreich.' }
@@ -84,18 +67,8 @@ class BuchungsController < ApplicationController
         else        
           format.html { render action: "new" }
           format.json { render json: @buchung.errors, status: :unprocessable_entity }
-        end
-      end   
-    else
-      format.html { redirect_to @buchung, notice: 'fuer diesen Zeitraum liegt schon eine Buchung vo' }
-    end
-
-        
-         
-      
-    
-      
-   
+        end             
+   end     
   end
 
   # PUT /buchungs/1

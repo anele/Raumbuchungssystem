@@ -7,4 +7,12 @@ class Kunde < ActiveRecord::Base
   validates_format_of :name, :ort,:vorname, :with => /^[a-zA-Z -]*$/, :message=>"xx"
   validates_format_of :tel, :fax,:plz, :with => /^[0-9]*$/, :message=>"Bitte nur Zahlen eingeben"
   validates :email, :presence=>true, :email=>true
+  
+  after_create :send_welcome_email
+  
+  private
+  
+  def send_welcome_email
+    Notification.new_account(self).deliver
+  end
 end
