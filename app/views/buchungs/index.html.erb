@@ -68,7 +68,7 @@
     <td><%= img_delete_button_to "/assets/delete.png", buchung%></td>    
      <%if buchung.status =='R'%>    	
     	<!--<td><%=img_button_to "/assets/edit.png", buchung%></td>--><!--<td><%= link_to 'Edit', edit_buchung_path(buchung) %></td>-->    	    	    	
-    	<td><%=link_to(image_tag("/assets/edit.png", :class=>"img", :size => "15x15",:title=>"Verbindlich buchen"),{:controller=>"buchungs", :action=>"restobooking",:id=>buchung.id},{:confirm=>"Verbindlich buchen?"})%></td>
+    	<td><%=link_to(image_tag("/assets/gr_haken.png", :class=>"img", :size => "15x15",:title=>"Verbindlich buchen"),{:controller=>"buchungs", :action=>"restobooking",:id=>buchung.id},{:confirm=>"Verbindlich buchen?"})%></td>
     	    	   
 
 
