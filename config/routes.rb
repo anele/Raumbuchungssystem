@@ -32,18 +32,6 @@ get "kundes/current_user/:id"=>"kundes#current_user"
 post "current_user" =>"kundes#current_user"
 post "kundes/current_user/:id"=>"kundes#current_user"
 
-get "personal" =>"kundes#personal"
-get "kundes/personal/:id"=>"kundes#personal" 
-post "personal" =>"kundes#personal"
-post "kundes/personal/:id"=>"kundes#personal"
-
-
-
-
-get "test"=>"raums#test"
-get "raums/test/"=>"raums#test"
-post "raums/test"
-
 get "verfuegbarkeit"=>"raums#verfuegbarkeit"
 get "raums/verfuegbarkeit"=>"raums#verfuegbarkeit"
 post "verfuegbarkeit" =>"raums#verfuegbarkeit"
