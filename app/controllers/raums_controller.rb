@@ -51,24 +51,8 @@ class RaumsController < ApplicationController
       @raum = Raum.find_by_id(:raum_id)
       @raum.update_attributes(params[:raum])
     end
-    # if params[:id] && !params[:id].empty
-    #   @raum = Raum.find(params[:id])
-    #  @raum.update_attributes(params[:raum])
-    #elsif
-    #if params[:r_idx] && !session[:r_idx].empty
-    #if params[:r_idx]
-    #  @raums= Raum.find(:all,:conditions=>["id LIKE ?","%#{params[:r_idx]}%"])
-    #  if @raums.size.zero?
-    #    @raums = Raum.find(:all)
-    #  end
-    #@raum = Raum.find_by_id(session[:r_idx])
-    #else
-    #  @raum = Raum.find(:first)
-    # else
-    @raums = Raum.find(:all)
-    # end
-
-    #end
+   
+    @raums = Raum.find(:all)   
 
     respond_to do |format|
       format.html # index.html.erb
@@ -146,9 +130,4 @@ class RaumsController < ApplicationController
       format.json { head :no_content }
     end
   end
-
-  def test
-
-  end
-
 end

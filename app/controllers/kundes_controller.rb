@@ -1,8 +1,4 @@
 class KundesController < ApplicationController
-  # Get kundes/personal
-  def personal 
-          
-  end
   # GET /kundes
   # GET /kundes.json
   def index

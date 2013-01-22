@@ -1,11 +1,7 @@
 class SessionsController < ApplicationController
-  
-  def new
-  end
 
   def create     
     @kunde = Kunde.find_by_email(params[:email])
-    #render :text =>@kunde.name
     
     if @kunde && @kunde.authenticate(params[:password])     
       session[:kunde_id] = @kunde.id      

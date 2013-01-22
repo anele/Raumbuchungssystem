@@ -17,16 +17,8 @@ class Buchung < ActiveRecord::Base
       errors.add(:raum_id, "bitte auswaehlen")      
     end 
 
-
-    #@anfang= Time.zone.parse(@start_date.to_s).utc
-    #@ende= Time.zone.parse(@end_date.to_s).utc
-    
-     #bookvalid(anfangszeit,endzeit)
     @bookexists = Buchung.find(:all, :select=>"anfangszeit,endzeit,status,kunde_id,raum_id", :conditions=>['(anfangszeit Between ? and ? or endzeit between ? and ? or anfangszeit < ? and endzeit > ?) and raum_id =?',anfangszeit, endzeit,anfangszeit,endzeit,anfangszeit,endzeit,raum_id])
     
-    #if @bookexists.length ==1      
-    #   errors.add(:raum_id, "ist vom #{@bookexists.anfangszeit} bis #{endzeit} nicht verfuegbar")      
-    #elsif @bookexists.length >1
     @flag = false
     if !@bookexists.nil? or @bookexists.length > 0 
         for book in @bookexists
@@ -42,8 +34,7 @@ class Buchung < ActiveRecord::Base
               for kunde in @kunden     
                 Notification.reservation(kunde).deliver
               end
-            end
-            
+            end           
           end
         end
     end   
