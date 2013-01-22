@@ -5,17 +5,21 @@ class Buchung < ActiveRecord::Base
   validate :validate_on_create 
   
   def validate_on_create    
-    if anfangszeit < Date.tomorrow
-      errors.add(:anfangszeit, "muss in der Zukunft liegen")
+    if kunde_id.nil?
+      errors.add(:kunde, "ist nicht angemeldet. Bitte loggen Sie sich ein!")  
+    else
+      if anfangszeit < Date.tomorrow
+        errors.add(:anfangszeit, "muss in der Zukunft liegen")
+      end
+      
+      if  endzeit < anfangszeit
+        errors.add(:endzeit, "muss groesser als Anfangzeit sein")
+      end
+      
+      if raum_id.nil?
+        errors.add(:raum_id, "bitte auswaehlen")      
+      end            
     end
-    
-    if  endzeit < anfangszeit
-      errors.add(:endzeit, "muss groesser als Anfangzeit sein")
-    end
-    
-    if raum_id.nil?
-      errors.add(:raum_id, "bitte auswaehlen")      
-    end 
 
     @bookexists = Buchung.find(:all, :select=>"anfangszeit,endzeit,status,kunde_id,raum_id", :conditions=>['(anfangszeit Between ? and ? or endzeit between ? and ? or anfangszeit < ? and endzeit > ?) and raum_id =?',anfangszeit, endzeit,anfangszeit,endzeit,anfangszeit,endzeit,raum_id])
     
