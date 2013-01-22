@@ -37,3 +37,7 @@ gem 'date_validator'
 
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'
+
+group :development, :test do
+    gem 'railroady'
+end

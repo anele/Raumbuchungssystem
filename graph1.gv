@@ -1,0 +1,11 @@
+digraph controllers_diagram {
+	graph[overlap=false, splines=true]
+	"ApplicationController" [shape=Mrecord, label="{ApplicationController|_one_time_conditions_valid_8?\l|\l|_layout\lcurrent_user\l}"]
+	"AusstattungsController" [shape=Mrecord, label="{AusstattungsController|create\ldestroy\ledit\lindex\lnew\lshow\lupdate\l|\l|_layout\l}"]
+	"BesitztsController" [shape=Mrecord, label="{BesitztsController|create\ldestroy\ledit\lindex\lnew\lshow\lupdate\l|\l|_layout\l}"]
+	"BuchungsController" [shape=Mrecord, label="{BuchungsController|create\ldestroy\ledit\lindex\ll2_anfrage\lnew\lrestobooking\lshow\lupdate\l|\l|_layout\l}"]
+	"KundesController" [shape=Mrecord, label="{KundesController|create\ldestroy\ledit\lindex\lnew\lshow\lupdate\l|\l|_layout\l}"]
+	"RaumsController" [shape=Mrecord, label="{RaumsController|create\ldestroy\ledit\lindex\lnew\lshow\lupdate\lverfuegbarkeit\l|\l|_layout\l}"]
+	"SessionsController" [shape=Mrecord, label="{SessionsController|create\ldestroy\lshow\l|\l|_layout\l}"]
+	"StaticController" [shape=Mrecord, label="{StaticController|contact\lhome\lindex\lselect\ltest\l|\l|_layout\l}"]
+}

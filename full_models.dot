@@ -1,0 +1,13 @@
+digraph models_diagram {
+	graph[overlap=false, splines=true]
+	"Ausstattung" [shape=Mrecord, label="{Ausstattung|id :integer\lbezeichnung :string\lcreated_at :datetime\lupdated_at :datetime\l}"]
+	"Besitzt" [shape=Mrecord, label="{Besitzt|id :integer\lraum_id :integer\lausstattung_id :integer\lcreated_at :datetime\lupdated_at :datetime\l}"]
+	"Buchung" [shape=Mrecord, label="{Buchung|id :integer\lbuchungsnr :integer\lanfangszeit :datetime\lendzeit :datetime\lraum_id :integer\lkunde_id :integer\lcreated_at :datetime\lupdated_at :datetime\lstatus :string\l}"]
+	"Kunde" [shape=Mrecord, label="{Kunde|id :integer\lfirma :string\lname :string\lvorname :string\ltel :string\lfax :string\lemail :string\lplz :integer\lort :string\lstrasse_nr :string\lraum_id :integer\lcreated_at :datetime\lupdated_at :datetime\llogin :string\lpassword :string\lpassword_confirmation :string\lpassword_digest :string\l}"]
+	"Raum" [shape=Mrecord, label="{Raum|id :integer\lname :string\lpers_anz :integer\lgroesse :integer\letage :string\lstatus :integer\lcreated_at :datetime\lupdated_at :datetime\l}"]
+	"Ausstattung" -> "Besitzt" [arrowtail=odot, arrowhead=crow, dir=both color="#554FCE"]
+	"Ausstattung" -> "Raum" [arrowtail=crow, arrowhead=crow, dir=both color="#EAD24E"]
+	"Kunde" -> "Buchung" [arrowtail=odot, arrowhead=crow, dir=both color="#EE7BDC"]
+	"Raum" -> "Besitzt" [arrowtail=odot, arrowhead=crow, dir=both color="#80B3DB"]
+	"Raum" -> "Buchung" [arrowtail=odot, arrowhead=crow, dir=both color="#B9E4B5"]
+}
