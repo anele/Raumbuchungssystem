@@ -18,8 +18,8 @@
 						<br/>
 						<br/>
 						<font color="#505873", size="3" ><%= Date::MONTHNAMES[@month.to_i]%> <%= @year%></font></td>
-
 						<td>&nbsp;</td>
+						
 						<td><a href="http://www.htwg-konstanz.de" target="_blank"><img src="/assets/logo_htwg.jpg" width="245" height="97" border="0"></a></td>
 					</tr>
 
@@ -149,6 +149,8 @@
 							<%end%>
 						</div>
 						<p>
+							<font color="#505873", size="0.5" >rot = Buchung; orange = Reservierung</font>
+							<br/>
 							<%= button_to "Zurück", raums_path, :method=> :get %>
 						</p></td>
 						<td width="30" align="left" valign="top"><img src="/assets/pix_weiss_01.gif" width="30" height="100%"></td>
