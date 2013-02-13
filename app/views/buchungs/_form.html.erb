@@ -11,13 +11,14 @@
     </div>
   <% end %>
 
+  <% today = DateTime.now.day %>
   <div class="field">
     <%= f.label :anfangszeit %><br />
-    <%= f.datetime_select :anfangszeit %>      
+    <%= f.datetime_select :anfangszeit, :default => { :day => today + 1, :hour => 8, :minute => 00} %>      
   </div>
   <div class="field">
     <%= f.label :endzeit %><br />
-    <%= f.datetime_select :endzeit%>
+    <%= f.datetime_select :endzeit, :default => { :day => today + 1, :hour => 18, :minute => 00} %>
 
   </div>
   <div class="field">
