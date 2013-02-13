@@ -44,7 +44,7 @@ class KundesController < ApplicationController
     @kunde = Kunde.new(params[:kunde])
     respond_to do |format|
       if @kunde.save
-        format.html { redirect_to @kunde, notice: 'Kunde was successfully created.' }
+        format.html { redirect_to @kunde, notice: 'Sie haben sich erfolgreich registriert!' }
         format.json { render json: @kunde, status: :created, location: @raum }
       else
         format.html { render action: "new" }
