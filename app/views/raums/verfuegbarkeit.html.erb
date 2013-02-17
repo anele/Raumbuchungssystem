@@ -4,166 +4,146 @@
 
 	</head>
 	<body>
-		<table cellpadding="0" cellspacing="0" width="900" border="0" align="center" style="margin-top:40px;">
-			<tr align="left" valign="top">
-				<td>
-				<table width="900" border="0" cellpadding="0" cellspacing="0" >
-					<!--  HAUPTMENU LEVEL 01-->
-
-					<!--HEADLINE	-->
-					<tr>
-						<td><img src="/assets/pix_weiss_01.gif" width="215" height="97"></td>
-						<td>&nbsp;</td>
-						<td class="head">Verf&uuml;gbarkeit pr&uuml;fen
-						<br/>
-						<br/>
-						<font color="#505873", size="3" ><%= Date::MONTHNAMES[@month.to_i]%> <%= @year%></font></td>
-						<td>&nbsp;</td>
+		<div class="villaMenus">
+			<ul>
+				<li><a href="/static/l1_buchen" target="_self" class="lev1">Konferenz- und Tagungsr&auml;ume</a></li>
+				<li><a href="/raums" target="_self" class="lev1akt">Verf&uuml;gbarkeit pr&uuml;fen</a></li>
+				<li><a href="/buchungs/new" target="_self" class="lev1">Online buchen</a></li>
+				<li><a href="/l2_anfrage.html" target="_self" class="lev1">Anfrage/Reservierung</a></li>
+				<li><a href="l1_kontakt.htm" target="_self" class="lev1">Kontakt</a></li>
+			</ul>
+		</div>
+	     
+		<div id="content_middle">
+			<br/>
+			<p class="head">Verf&uuml;gbarkeit</p>
+			<br/>
+			<font color="#505873", size="3" ><%= Date::MONTHNAMES[@month.to_i]%> <%= @year%></font>
+			<br/><br/>
+			
+			<% for auswahl in @auswahl %>			
+				<table id='calendar' border = '1px'; bgcolor="#e6d2d3"; >
+					<caption align="center">
+						<font color="black" ><b><%= Raum.find_by_id(auswahl).name%> </b></font>
+					</caption>
+					<tr border ='1px'; bgcolor="#d09896";>
+						<th>So</th><th>Mo</th>
+						<th>Di</th><th>Mi</th>
+						<th>Do</th><th>Fr</th>
+						<th>Sa</th>
+					</tr>
+					<tr>										
+						<% @beginning_of_month = Date.civil(@year.to_i, @month.to_i, 1) %>
+						<% @end_of_month = Date.civil(@year.to_i, @month.to_i, -1) %>	
 						
-						<td><a href="http://www.htwg-konstanz.de" target="_blank"><img src="/assets/logo_htwg.jpg" width="245" height="97" border="0"></a></td>
+							
+						<% (@beginning_of_month..@end_of_month).each do |d| %>
+						<%buchung(auswahl,d)%>																						
+			   																																																																													
+							<% if d == @beginning_of_month %>
+								<% d.wday.times do %> <td class='offset'></td> <% end %>
+							<% end %>
+							<!--Zeilenumbruch-->
+							<% if d.wday == 0 %>
 					</tr>
+					<tr><% end %>																							
+						<% for exist in @exists%>
+							<!--<%=startday = exist.anfangszeit.day%>-->
+							<%endday = exist.endzeit.day%>
+							<%status = exist.status%>
+						<%end%>																						
+						<% if d.day >= startday.to_i && d.day <= endday.to_i  %>
+							<%if @exists.length==1%>
+							 
+									<%if startday == endday%>
+										<% for exist in @exists%>															
+											<% if exist.status =='B'%>																
+												<% if exist.endzeit.hour<=12%>
+													<td class="gruenrot"><font color="black"> <%= d.day%> </font></td>
+												<% elsif exist.anfangszeit.hour>12%>
+													<td class="rotgruen"><font color="black"> <%= d.day%> </font></td>
+												<% elsif exist.anfangszeit.hour<12 && exist.endzeit.hour>12%>
+													<td class="rot"><font color="black"> <%= d.day%> </font></td>
+												<% else%> 
+													<td class="rot"><font color="black"> <%= d.day%> </font></td>
+												<% end%>
+											<% elsif exist.status =='R'%>																																												
+												<% if exist.endzeit.hour<=12%>
+													<td class="gruenorange"><font color="black"> <%= d.day%> </font></td>
+												<% elsif exist.anfangszeit.hour>12%>
+													<td class="orangegruen"><font color="black"> <%= d.day%> </font></td>
+												<% elsif exist.anfangszeit.hour<12 && exist.endzeit.hour>12%>																		
+													<td class="orange"><font color="black"> <%= d.day%> </font></td>
+												<% else%>															
+													<td class="orange"><font color="black"> <%= d.day%> </font></td>
+												<% end%>																																												
+											<%end%> 
+										<%end%>
+									<%elsif startday < endday%> 
+									
+										<% if status =='B'%>																		
+											<% if d.day == startday.to_i%>
+												<% if exist.anfangszeit.hour>12%>
+													<td class="rotgruen"><font color="black"> <%= d.day%> </font></td>
+												<% else%> 
+													<td class="rot"><font color="black"> <%= d.day%> </font></td>
+												<% end%>
+											<% elsif d.day == endday.to_i%> 
+												<% if exist.endzeit.hour<=12%>
+													<td class="gruenrot"><font color="black"> <%= d.day%> </font></td>
+												<% else%> 
+													<td class="rot"><font color="black"> <%= d.day%> </font></td>
+												<% end%>
+											<% else%> 
+												<td class="rot"><font color="black"> <%= d.day%> </font></td>
+											<% end%>
+										<%elsif status=='R'%>
+											<% if d.day == startday.to_i%>
+												<% if exist.anfangszeit.hour>12%>
+													<td class="orangegruen"><font color="black"> <%= d.day%> </font></td>
+												<% else%> 
+													<td class="orange"><font color="black"> <%= d.day%> </font></td>
+												<% end%>
+											<% elsif d.day == endday.to_i%> 
+												<% if exist.endzeit.hour<=12%>
+													<td class="gruenorange"><font color="black"> <%= d.day%> </font></td>
+												<% else%> 
+													<td class="orange"><font color="black"> <%= d.day%> </font></td>
+												<% end%>
+											<% else%> 
+												<td class="orange"><font color="black"> <%= d.day%> </font></td>
+											<% end%>
+										<% end%>
+									
+									<%end%>
 
-					<!--UNTERMENUE LINKE SEITE LEVEL 02-->
-					<tr>
-						<td width="215" valign="top">
-						<div id="villaMenus" class="villaMenus">
-							<a href="/static/l1_buchen" target="_self" class="lev1akt">Konferenz- und Tagungsr&auml;ume</a>
-							<a href="/raums" target="_self" class="lev1">Verf&uuml;gbarkeit pr&uuml;fen</a>
-							<a href="/buchungs/new" target="_self" class="lev1">Online buchen</a>
-							<a href="/l2_anfrage.html" target="_self" class="lev1">Anfrage/Reservierung</a>
-							<a href="/static/l1_kontakt.html" target="_self" class="lev1">Kontakt</a>
-						</div><!--CONTENT TEXTINHALTE / UNTERMENUE LEVEL 03--></td>
-						<td width="30" align="left" valign="top"><img src="/assets/pix_weiss_01.gif" width="30" height="100%"></td>
-						<td width="380" align="left" valign="top">
-						<div width="100" >
-
-							<% for auswahl in @auswahl %>				
-								<table id='calendar' border = '1px'; bgcolor="#e6d2d3"; >
-									<caption align="center">
-										<font color="black" ><b><%= Raum.find_by_id(auswahl).name%> </b></font>
-									</caption>
-									<tr border ='1px'; bgcolor="#d09896";>
-										<th>So</th><th>Mo</th>
-										<th>Di</th><th>Mi</th>
-										<th>Do</th><th>Fr</th>
-										<th>Sa</th>
-									</tr>
-									<tr>										
-										<% @beginning_of_month = Date.civil(@year.to_i, @month.to_i, 1) %>
-										<% @end_of_month = Date.civil(@year.to_i, @month.to_i, -1) %>	
-										
-											
-										<% (@beginning_of_month..@end_of_month).each do |d| %>
-										<%buchung(auswahl,d)%>																						
-     						   																																																																													
-											<% if d == @beginning_of_month %>
-												<% d.wday.times do %> <td class='offset'></td> <% end %>
-											<% end %>
-											<!--Zeilenumbruch-->
-											<% if d.wday == 0 %></tr><tr><% end %>
-																																		
-											<% for exist in @exists%>
-												<!--<%=startday = exist.anfangszeit.day%>-->
-												<%endday = exist.endzeit.day%>
-												<%status = exist.status%>
-											<%end%>																						
-											<% if d.day >= startday.to_i && d.day <= endday.to_i  %>
-												<%if @exists.length==1%>
-												 
-														<%if startday == endday%>
-															<% for exist in @exists%>															
-																<% if exist.status =='B'%>																
-																	<% if exist.endzeit.hour<=12%>
-																		<td class="gruenrot"><font color="black"> <%= d.day%> </font></td>
-																	<% elsif exist.anfangszeit.hour>12%>
-																		<td class="rotgruen"><font color="black"> <%= d.day%> </font></td>
-																	<% elsif exist.anfangszeit.hour<12 && exist.endzeit.hour>12%>
-																		<td class="rot"><font color="black"> <%= d.day%> </font></td>
-																	<% else%> 
-																		<td class="rot"><font color="black"> <%= d.day%> </font></td>
-																	<% end%>
-																<% elsif exist.status =='R'%>																																												
-																	<% if exist.endzeit.hour<=12%>
-																		<td class="gruenorange"><font color="black"> <%= d.day%> </font></td>
-																	<% elsif exist.anfangszeit.hour>12%>
-																		<td class="orangegruen"><font color="black"> <%= d.day%> </font></td>
-																	<% elsif exist.anfangszeit.hour<12 && exist.endzeit.hour>12%>																		
-																		<td class="orange"><font color="black"> <%= d.day%> </font></td>
-																	<% else%>															
-																		<td class="orange"><font color="black"> <%= d.day%> </font></td>
-																	<% end%>																																												
-																<%end%> 
-															<%end%>
-														<%elsif startday < endday%> 
-														
-															<% if status =='B'%>																		
-																<% if d.day == startday.to_i%>
-																	<% if exist.anfangszeit.hour>12%>
-																		<td class="rotgruen"><font color="black"> <%= d.day%> </font></td>
-																	<% else%> 
-																		<td class="rot"><font color="black"> <%= d.day%> </font></td>
-																	<% end%>
-																<% elsif d.day == endday.to_i%> 
-																	<% if exist.endzeit.hour<=12%>
-																		<td class="gruenrot"><font color="black"> <%= d.day%> </font></td>
-																	<% else%> 
-																		<td class="rot"><font color="black"> <%= d.day%> </font></td>
-																	<% end%>
-																<% else%> 
-																	<td class="rot"><font color="black"> <%= d.day%> </font></td>
-																<% end%>
-															<%elsif status=='R'%>
-																<% if d.day == startday.to_i%>
-																	<% if exist.anfangszeit.hour>12%>
-																		<td class="orangegruen"><font color="black"> <%= d.day%> </font></td>
-																	<% else%> 
-																		<td class="orange"><font color="black"> <%= d.day%> </font></td>
-																	<% end%>
-																<% elsif d.day == endday.to_i%> 
-																	<% if exist.endzeit.hour<=12%>
-																		<td class="gruenorange"><font color="black"> <%= d.day%> </font></td>
-																	<% else%> 
-																		<td class="orange"><font color="black"> <%= d.day%> </font></td>
-																	<% end%>
-																<% else%> 
-																	<td class="orange"><font color="black"> <%= d.day%> </font></td>
-																<% end%>
-															<% end%>
-														
-														<%end%>
-
-												<%elsif @exists.length==2%>																																										
-													<% if status =='B'%>
-														<td class="rot"><font color="black"> <%= d.day%> </font></td>														
-													<%elsif status=='R'%>
-														<td class="orange"><font color="black"> <%= d.day%> </font></td>
-													<%end%>
-												<%end%>																																																						
-											<%else%>
-												<td class="gruen"><font color="black"> <%= d.day%> </font></td>
-											<%end%>															
-										<% end %>												
-									</tr>
-								</table>
-								
-							<%end%>
-						</div>
-						<p>
-							<font color="#505873", size="0.5" >rot = Buchung; orange = Reservierung</font>
-							<br/>
-							<%= button_to "Zurück", raums_path, :method=> :get %>
-						</p></td>
-						<td width="30" align="left" valign="top"><img src="/assets/pix_weiss_01.gif" width="30" height="100%"></td>
-						<!--BILDER RECHTE SEITE	-->
-						<td width="245" align="left" valign="top"><img src="/assets/img_villa_01.jpg" width="245" height="327">
-						<br>
-						<br>
-						Villa am See
-						<br>
-						</td>
+								<%elsif @exists.length==2%>																																										
+									<% if status =='B'%>
+										<td class="rot"><font color="black"> <%= d.day%> </font></td>														
+									<%elsif status=='R'%>
+										<td class="orange"><font color="black"> <%= d.day%> </font></td>
+									<%end%>
+								<%end%>																																																						
+							<%else%>
+								<td class="gruen"><font color="black"> <%= d.day%> </font></td>
+							<%end%>															
+						<% end %>												
 					</tr>
-				</table></td>
-			</tr>
-		</table>
+				</table>	
+			<%end%>
+			<p>
+				<font color="#505873", size="0.5" >rot = Buchung; orange = Reservierung</font>
+				<br/>
+				<%= button_to "Zurück", raums_path, :method=> :get %>
+			</p>
+		</div>
+		
+		<div id="images_right">
+			<div id="htwg_logo">
+				<a href="http://www.htwg-konstanz.de" target="_blank"><img src="/assets/logo_htwg.jpg"></a>
+			</div>
+			<div id="villa_pic2"/>
+			<div id="villa_am_see">Villa am See</div>
+		</div>			
 	</body>
 </html>

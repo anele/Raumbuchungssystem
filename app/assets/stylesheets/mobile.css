@@ -1,5 +1,5 @@
 /*###############################################################
-      Villa Rheinburg
+     CSS for mobile devices
 ###############################################################*/
 
 
@@ -52,14 +52,6 @@ a.textlink {
 	font-weight: normal;
 	color: #505873;
 	text-decoration: underline;
-}
-
-a.textlink:hover {
-	padding: 0px 0px 0px 0px;
-	text-align: left;
-	font-size: 12px;
-	color: #505873;
-	background-color:#ffffff;
 }
 
 #image_villa_motion{
@@ -195,13 +187,6 @@ a.lev1 {
 	border-top: 1px solid #d09896;
 }
 
-
-a.lev1:hover {
-	background-color:#e6d2d3; 
-	color:#505873;
-}
-
-
 /* MENU1 */
 #menu1 {
 	margin-left: 113px;
@@ -225,7 +210,7 @@ a.menu1:visited {
 }
 
 
-a.menu1:active, a.menu1:focus, a.menu1:hover {
+a.menu1:active {
 	color: #ffffff;
 }
 
@@ -238,11 +223,10 @@ a.menu1akt:link {
 	padding:0px 10px 0px 12px;
 }
 
-
 a.menu1akt:visited {
 	color: #ffffff;
 }
 
-a.menu1akt:active, a.menu1akt:focus, a.menu1akt:hover {
+a.menu1akt:active {
 	color: #ffffff;
 }

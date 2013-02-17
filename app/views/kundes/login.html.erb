@@ -1,69 +1,44 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 	<head>
+
 	</head>
 	<body>
-		<table cellpadding="0" cellspacing="0" width="900" border="0" align="center" style="margin-top:40px;">
-			<tr align="left" valign="top">
-				<td>
-				<table width="900" border="0" cellpadding="0" cellspacing="0" >
-					<!--  HAUPTMENU LEVEL 01-->
-
-					<!--HEADLINE	-->
-					<tr>
-						<td><img src="/assets/pix_weiss_01.gif" width="215" height="97"></td>
-						<td>&nbsp;</td>
-						<td class="head">Anmeldung
-													
-						<td>&nbsp;</td>
-						<td><a href="http://www.htwg-konstanz.de" target="_blank"><img src="/assets/logo_htwg.jpg" width="245" height="97" border="0"></a></td>
-					</tr>
-
-					<!--UNTERMENUE LINKE SEITE LEVEL 02-->
-					<tr>
-						<td width="215" valign="top">
-						<div id="villaMenus" class="villaMenus">
-							<a href="/session/new" target="_self" class="lev1akt">Anmelden</a>
-							<a href="/kundes/new" target="_self" class="lev1">Registrieren</a>							
-						</div><!--CONTENT TEXTINHALTE / UNTERMENUE LEVEL 03--></td>
-						<td width="30" align="left" valign="top"><img src="/assets/pix_weiss_01.gif" width="30" height="100%"></td>
-						<td width="380" align="left" valign="top">
-						<div width="100" >		
-							<%=form_tag :action=>'current_user' do%><!--:action=>'current_user' -->																							
-								<p>			
-								<%=label_tag "E-Mail",nil, :style=>"width: 100px; margin-right:16.5px;"%>
-								<%=text_field_tag :email%>
-								</p>
-								<p>
-								<%=label_tag "Passwort",nil%>
-								<%=text_field_tag :passwort%>
-								</p>
-								
-								<%= submit_tag "Einloggen" %>
-								<!--<%= submit_tag "Einloggen"%>-->
-							<%end%>	
-						</div>
-						<p>
-							
-						</p>
-						</td>
-						<td width="30" align="left" valign="top"><img src="/assets/pix_weiss_01.gif" width="30" height="100%"></td>
-						<!--BILDER RECHTE SEITE	-->
-						<td width="245" align="left" valign="top"><img src="/assets/img_villa_01.jpg" width="245" height="327">
-						<br>
-						<br>
-						Villa am See
-						<br>
-						</td>
-					</tr>
-				</table></td>
-			</tr>
-		</table>
+		<div class="villaMenus">
+			<ul>
+				<li><a href="/sessions/new" target="_self" class="lev1akt">Anmelden</a></li>
+				<li><a href="/kundes/new" target="_self" class="lev1">Registrieren</a></li>
+			</ul>
+		</div>
+	     
+		<div id="content_middle">
+			<br/>
+			<p class="head">AnmeldungWO WIRD DIE SEITE BENUTZT2??????????????????????????</p>
+			<br/>
+			
+			<%=form_tag :action=>'current_user' do%><!--:action=>'current_user' -->																							
+				<p>			
+				<%=label_tag "E-Mail",nil, :style=>"width: 100px; margin-right:16.5px;"%>
+				<%=text_field_tag :email%>
+				</p>
+				<p>
+				<%=label_tag "Passwort",nil%>
+				<%=text_field_tag :passwort%>
+				</p>
+				
+				<%= submit_tag "Einloggen" %>
+				<!--<%= submit_tag "Einloggen"%>-->
+			<%end%>	
+		</div>
+		
+		<div id="images_right">
+			<div id="htwg_logo">
+				<a href="http://www.htwg-konstanz.de" target="_blank"><img src="/assets/logo_htwg.jpg"></a>
+			</div>
+			<div id="villa_pic2"/>
+			<div id="villa_am_see">Villa am See</div>
+		</div>
 	</body>
 </html>
-
-
-
-
 
 <!--<%= link_to 'Back', kundes_path %>-->
