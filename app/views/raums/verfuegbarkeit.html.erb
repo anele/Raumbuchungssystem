@@ -41,7 +41,7 @@
 						<%buchung(auswahl,d)%>																						
 			   																																																																													
 							<% if d == @beginning_of_month %>
-								<% d.wday.times do %> <td class='offset'></td> <% end %>
+								<% d.wday.times do %> <td></td> <% end %>
 							<% end %>
 							<!--Zeilenumbruch-->
 							<% if d.wday == 0 %>
@@ -59,23 +59,23 @@
 										<% for exist in @exists%>															
 											<% if exist.status =='B'%>																
 												<% if exist.endzeit.hour<=12%>
-													<td class="gruenrot"><font color="black"> <%= d.day%> </font></td>
+													<td class="gruenrot"> <%= d.day%></td>
 												<% elsif exist.anfangszeit.hour>12%>
-													<td class="rotgruen"><font color="black"> <%= d.day%> </font></td>
+													<td class="rotgruen"> <%= d.day%></td>
 												<% elsif exist.anfangszeit.hour<12 && exist.endzeit.hour>12%>
-													<td class="rot"><font color="black"> <%= d.day%> </font></td>
+													<td class="rot"> <%= d.day%></td>
 												<% else%> 
-													<td class="rot"><font color="black"> <%= d.day%> </font></td>
+													<td class="rot"> <%= d.day%></td>
 												<% end%>
 											<% elsif exist.status =='R'%>																																												
 												<% if exist.endzeit.hour<=12%>
-													<td class="gruenorange"><font color="black"> <%= d.day%> </font></td>
+													<td class="gruenorange"> <%= d.day%></td>
 												<% elsif exist.anfangszeit.hour>12%>
-													<td class="orangegruen"><font color="black"> <%= d.day%> </font></td>
+													<td class="orangegruen"> <%= d.day%></td>
 												<% elsif exist.anfangszeit.hour<12 && exist.endzeit.hour>12%>																		
-													<td class="orange"><font color="black"> <%= d.day%> </font></td>
+													<td class="orange"> <%= d.day%></td>
 												<% else%>															
-													<td class="orange"><font color="black"> <%= d.day%> </font></td>
+													<td class="orange"> <%= d.day%></td>
 												<% end%>																																												
 											<%end%> 
 										<%end%>
@@ -84,34 +84,34 @@
 										<% if status =='B'%>																		
 											<% if d.day == startday.to_i%>
 												<% if exist.anfangszeit.hour>12%>
-													<td class="rotgruen"><font color="black"> <%= d.day%> </font></td>
+													<td class="rotgruen"> <%= d.day%></td>
 												<% else%> 
-													<td class="rot"><font color="black"> <%= d.day%> </font></td>
+													<td class="rot"> <%= d.day%></td>
 												<% end%>
 											<% elsif d.day == endday.to_i%> 
 												<% if exist.endzeit.hour<=12%>
-													<td class="gruenrot"><font color="black"> <%= d.day%> </font></td>
+													<td class="gruenrot"> <%= d.day%></td>
 												<% else%> 
-													<td class="rot"><font color="black"> <%= d.day%> </font></td>
+													<td class="rot"> <%= d.day%></td>
 												<% end%>
 											<% else%> 
-												<td class="rot"><font color="black"> <%= d.day%> </font></td>
+												<td class="rot"> <%= d.day%></td>
 											<% end%>
 										<%elsif status=='R'%>
 											<% if d.day == startday.to_i%>
 												<% if exist.anfangszeit.hour>12%>
-													<td class="orangegruen"><font color="black"> <%= d.day%> </font></td>
+													<td class="orangegruen"> <%= d.day%></td>
 												<% else%> 
-													<td class="orange"><font color="black"> <%= d.day%> </font></td>
+													<td class="orange"> <%= d.day%></td>
 												<% end%>
 											<% elsif d.day == endday.to_i%> 
 												<% if exist.endzeit.hour<=12%>
-													<td class="gruenorange"><font color="black"> <%= d.day%> </font></td>
-												<% else%> 
-													<td class="orange"><font color="black"> <%= d.day%> </font></td>
+													<td class="gruenorange"> <%= d.day%></td>
+												<% else%>
+													<td class="orange"> <%= d.day%></td>
 												<% end%>
 											<% else%> 
-												<td class="orange"><font color="black"> <%= d.day%> </font></td>
+												<td class="orange"> <%= d.day%></td>
 											<% end%>
 										<% end%>
 									
@@ -119,13 +119,13 @@
 
 								<%elsif @exists.length==2%>																																										
 									<% if status =='B'%>
-										<td class="rot"><font color="black"> <%= d.day%> </font></td>														
+										<td class="rot"> <%= d.day%></td>														
 									<%elsif status=='R'%>
-										<td class="orange"><font color="black"> <%= d.day%> </font></td>
+										<td class="orange"> <%= d.day%></td>
 									<%end%>
 								<%end%>																																																						
 							<%else%>
-								<td class="gruen"><font color="black"> <%= d.day%> </font></td>
+								<td class="gruen"> <%= d.day%></td>
 							<%end%>															
 						<% end %>												
 					</tr>

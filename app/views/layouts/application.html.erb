@@ -2,7 +2,7 @@
 <html>
 <head>
   <title>Raumbuchungssystem Villa Rheinburg</title>
-  <% if !mobile_device? %>
+  <% if mobile_device? %>
   	<%= stylesheet_link_tag    "mobile" %>
   <% else %>
   	<%= stylesheet_link_tag    "application"%>
