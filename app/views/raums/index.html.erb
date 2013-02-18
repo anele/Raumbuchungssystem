@@ -33,72 +33,86 @@
 			}
 		</script>
 	</head>
-	
 	<body onLoad ='init()'>
+		<table cellpadding="0" cellspacing="0" width="900" border="0" align="center" style="margin-top:40px;">
+			<tr align="left" valign="top">
+				<td>
+				<table width="900" border="0" cellpadding="0" cellspacing="0" >
+					<!--  HAUPTMENU LEVEL 01-->
+					<!--HEADLINE	-->
+					<tr>
+						<td><img src="/assets/pix_weiss_01.gif" width="215" height="97"></td>
+						<td>&nbsp;</td>
+						<td class="head">Online-Buchung </td>
+						<td>&nbsp;</td>
+						<td><a href="http://www.htwg-konstanz.de" target="_blank"><img src="/assets/logo_htwg.jpg" width="245" height="97" border="0"></a></td>
+					</tr>
 
-		<div class="villaMenus">
-			<ul>
-				<li><a href="/static/l1_buchen" target="_self" class="lev1">Konferenz- und Tagungsr&auml;ume</a></li>
-				<li><a href="/raums" target="_self" class="lev1akt">Verf&uuml;gbarkeit pr&uuml;fen</a></li>
-				<li><a href="/buchungs/new" target="_self" class="lev1">Online buchen</a></li>
-				<li><a href="/l2_anfrage.html" target="_self" class="lev1">Anfrage/Reservierung</a></li>
-				<li><a href="l1_kontakt.htm" target="_self" class="lev1">Kontakt</a></li>
-			</ul>
-		</div>
-	     
-		<div id="content_middle">
-			<br/>
-			<p class="head">Verf&uuml;gbarkeit pr&uuml;fen</p>
-			<br/>
-			<table cellpadding="0" cellspacing="0" border="0">
-				<td width="380">											
-					<%=form_tag :action=>'verfuegbarkeit' do%>
-					<p>
-						Auswahl Zeitraum
-						</br>	
-						<%= date_select("select_d", "written_on", :start_year =>Time.now.year, :end_year =>Time.now.year+5, :discard_day => true, :order => [ :month, :year] )%>								
-					</p>
-					<div class="field">									
-						<p>								
-							Auswahl Raum
-							</br>									
-							
-							<%= collection_select(:raum, :selected_r_index, Raum.all, :id, :name, {:prompt=>"Alle Räume"}, {:onchange => "set_disabled()"}) %> 
-							<%= text_field_tag :info, nil, :size => 35, :style => 'border-style: none; color: rgb(55, 88, 115); visibility: hidden;', :disabled => true%>																													
-						</p>
-					</div>
-					<div id="div_anz" class="field">
-						<p>								
-							Anzahl Teilnehmer
-							</br>
-							<%= text_field_tag :pers_anz, nil, :onblur=>"if (this.value >120){alert('Die Kapazität des größten Raumes: 120 Personen. Bei Teilnahme von mehr als 120 Personen wenden Sie sich bitte an uns');}"%>								
-						</p>
-					</div>
-		
-					<div id="div_ausst" style="border-width: 2px;">
-						<p>
-							Ausstattung
-							</br>
-							<% for ausstattung in @ausst %>
-								<%= check_box_tag 'ausstattung[]', ausstattung.id %>																				
-								<%= ausstattung.bezeichnung%>
-								</br>
-							<%end%>
-						</p>
-					</div>
-		
-					<%= submit_tag 'Verfügbarkeit anzeigen'%>
-					<%end %>													
-				</td>
-			</table>
-		</div>
-		
-		<div id="images_right">
-			<div id="htwg_logo">
-				<a href="http://www.htwg-konstanz.de" target="_blank"><img src="/assets/logo_htwg.jpg"></a>
-			</div>
-			<div id="villa_pic"/>
-			<div id="villa_am_see">Villa am See</div>
-		</div>
+					<!--UNTERMENUE LINKE SEITE LEVEL 02-->
+					<tr>
+						<td width="215" valign="top">
+							<div id="villaMenus" class="villaMenus">
+								<a href="/static/l1_buchen" target="_self" class="lev1">Konferenz- und Tagungsr&auml;ume</a>
+								<a href="/raums" target="_self" class="lev1akt">Verf&uuml;gbarkeit pr&uuml;fen</a>
+								<a href="/buchungs/new" target="_self" class="lev1">Online buchen</a>
+								<a href="/l2_anfrage.html" target="_self" class="lev1">Anfrage/Reservierung</a>
+								<a href="/static/l1_kontakt.html" target="_self" class="lev1">Kontakt</a>
+							</div><!--CONTENT TEXTINHALTE / UNTERMENUE LEVEL 03-->
+						</td>
+						<td width="30" align="left" valign="top">
+							<img src="/assets/pix_weiss_01.gif" width="30" height="100%">
+							</td>
+
+						<td width="380" align="left" valign="top">											
+							<%=form_tag :action=>'verfuegbarkeit' do%>
+							<p>
+								Auswahl Zeitraum
+								<br>	
+								<%= date_select("select_d", "written_on", :start_year =>Time.now.year, :end_year =>Time.now.year+5, :discard_day => true, :order => [ :month, :year] )%>								
+							</p>
+							<div class="field">									
+								<p>								
+									Auswahl Raum
+									<br>									
+									
+									<%= collection_select(:raum, :selected_r_index, Raum.all, :id, :name, {:prompt=>"Alle Räume"}, {:onchange => "set_disabled()"}) %> 
+									<%= text_field_tag :info, nil, :size => 35, :style => 'border-style: none; color: rgb(55, 88, 115); visibility: hidden;', :disabled => true%>																													
+								</p>
+							</div>
+							<div id="div_anz" class="field">
+								<p>								
+									Anzahl Teilnehmer
+									<br>
+									<%= text_field_tag :pers_anz, nil, :onblur=>"if (this.value >120){alert('Die Kapazität des größten Raumes: 120 Personen. Bei Teilnahme von mehr als 120 Personen wenden Sie sich bitte an uns');}"%>								
+								</p>
+							</div>
+	
+							<div id="div_ausst" style="border-width: 2px;">
+								<p>
+									Ausstattung
+									<br>
+									<% for ausstattung in @ausst %>
+										<%= check_box_tag 'ausstattung[]', ausstattung.id %>																				
+										<%= ausstattung.bezeichnung%>
+										<br>
+									<%end%>
+								</p>
+							</div>
+	
+							<%= submit_tag 'Verfügbarkeit anzeigen'%>
+							<%end %>													
+						</td>
+
+						<td width="30" align="left" valign="top"><img src="/assets/pix_weiss_01.gif" width="30" height="100%"></td>
+						<!--BILDER RECHTE SEITE	-->
+						<td width="245" align="left" valign="top"><img src="/assets/img_see_07.jpg" width="245" height="323">
+						<br>
+						<br>
+						Villa am See </td>
+					</tr>
+				</table></td>
+			</tr>
+
+		</table>
 	</body>
 </html>

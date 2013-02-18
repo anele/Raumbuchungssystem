@@ -2,47 +2,47 @@
 <html>
 <head>
   <title>Raumbuchungssystem Villa Rheinburg</title>
-  <% if !mobile_device? %>
-  	<%= stylesheet_link_tag    "mobile" %>
-  <% else %>
-  	<%= stylesheet_link_tag    "application"%>
-  <% end %>
-  
+  <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
-<body>
-	<div>
-		<div id="image_villa_motion">
-	        <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=7,0,19,0">
-	        	<param name="movie" value="http://www.villa-rheinburg.htwg-konstanz.de/img/hg_01.swf">
-	        	<param name="quality" value="high">
-	        	<embed src="http://www.villa-rheinburg.htwg-konstanz.de/img/hg_01.swf" quality="high" pluginspage="http://www.macromedia.com/go/getflashplayer" type="application/x-shockwave-flash" width="655" height="97"></embed>
-	        </object> 
-		</div>
-		
-		<div id="image_villa_static"/>
-	</div>
-	
-	<div>
-		<div id="navi_bar_menu">
-			<ul>
-				<li><a href="/static/index" target="_self" class="menu1akt">Home</a></li>
-				<li><a href="/static/l1_buchen" class="menu1">Online-Buchung</a></li>
-				<li><a href="/static/l1_kontakt" class="menu1">Kontakt</a></li>
-				<li>
-					<% if current_user.nil?%>
-			        	<%=link_to "Login", new_session_path%>
-			        <% else %>
-			        	Hallo, <%=link_to(current_user.name,:controller => "kundes", :action => "show", :id => current_user.id) %>
-			        	<%=link_to "(Logout)", session_path(session), :method=> :delete%>
-			        <% end %>
-		        </li>
-			</ul>
-		</div>
-		<div id="navi_bar"/>
-	</div>
-	
+<body>	
+<table cellpadding="0" cellspacing="0" width="900" border="0" align="center" style="margin-top:40px;">
+   <tr align="left" valign="top">
+    <td>
+     <table width="900" border="0" cellpadding="0" cellspacing="0" >
+      <tr> 
+       <td colspan="4" width="655" valign="bottom" height="97">
+        <div style="width:655px; height:97px;">
+        <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=7,0,19,0" width="655" height="97">
+         <param name="movie" value="http://www.villa-rheinburg.htwg-konstanz.de/img/hg_01.swf">
+         <param name="quality" value="high">
+         <embed src="http://www.villa-rheinburg.htwg-konstanz.de/img/hg_01.swf" quality="high" pluginspage="http://www.macromedia.com/go/getflashplayer" type="application/x-shockwave-flash" width="655" height="97"></embed>
+        </object>  </div> 
+       </td>
+       <td width="245" valign="bottom">
+        <div style="height:97px;"><img src="/assets/zeichen_villa.jpg" width="245" height="97"></div>
+       </td>
+      </tr>
+      <!--  HAUPTMENU LEVEL 01-->      
+      <tr>
+       <!--<td colspan="4" background="hg_navi_01.jpg" width="655" height="35">-->
+       	<td colspan="4" style="background-image:url(/assets/hg_navi_01.jpg)" width="655" height="35">
+
+        <a href="/static/index" target="_self" class="menu1akt">Home</a>
+        <a href="/static/l1_buchen" class="menu1">Online-Buchung</a>
+        <a href="/static/l1_kontakt" class="menu1">Kontakt</a>
+        <% if current_user.nil?%>
+        	<%=link_to "Login", new_session_path%>
+        <% else %>
+        	Hallo, <%=link_to(current_user.name,:controller => "kundes", :action => "show", :id => current_user.id) %>
+        	<%=link_to "(Logout)", session_path(session), :method=> :delete%>
+        <% end %>
+       </td>
+       <!--<td background="/assets/hg_navi_02.jpg">-->
+       	<td style="background-image:url(/assets/hg_navi_02.jpg)">
+       </td>
+      </tr>
 <%= yield %>
 
 </body>
