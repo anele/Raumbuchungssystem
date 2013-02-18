@@ -1,19 +1,7 @@
-@import "ausstattungs.css.scss";
-@import "besitzts.css.scss";
-@import "buchungs.css.scss";
-@import "kundes.css.scss";
-@import "raums.css.scss";
-/*@import "scaffolds.css.scss";*/
-@import "sessions.css.scss";
-@import "static.css.scss";
-
-@import "calendar_styles/blue.css";
-@import "calendar_styles/grey.css";
-@import "calendar_styles/red.css";
-
 /*###############################################################
       Villa Rheinburg
 ###############################################################*/
+
 
 /* body*/
 body {
@@ -22,20 +10,12 @@ body {
 	padding-top: 40px;
 }
 
-p{
+p, td, ol {
 	font-family: Arial, Verdana, Helvetica, sans-serif;
 	color: #505873;
 	font-size: 12px;
 	line-height: 18px;
 }
-
-td {
-	font-family: Arial, Verdana, Helvetica, sans-serif;
-	color: black;
-	font-size: 12px;
-	line-height: 18px;
-}
-
 
 /* HEAD (VERANSTALTUNG) */
 .head {
@@ -186,7 +166,7 @@ a, div {
 .villaMenus ul{
 	padding: 80px 30px 0px 0px;
 	margin: 0px;
-	border-bottom: 1px solid #d09896;
+	border-bottom: 1px solid #d09896; /* BUG */
 }
 
 .villaMenus ul li{
@@ -203,8 +183,9 @@ a.lev1akt {
 	background-color:#e6d2d3; 
 	color:#505873;
 	padding: 2px 0px 2px 10px;
-	border-top: 1px solid #d09896;
+	border-top: 1px solid #d09896; /* BUG */
 }
+
 
 a.lev1 {
 	display:block; 
@@ -213,6 +194,7 @@ a.lev1 {
 	padding:2px 0px 2px 10px;
 	border-top: 1px solid #d09896;
 }
+
 
 a.lev1:hover {
 	background-color:#e6d2d3; 
@@ -229,6 +211,7 @@ a.lev1:hover {
 	font-weight:bold;  
 }
 
+
 a.menu1:link {
 	color: #3F3F3D;
 	text-decoration: none;
@@ -236,9 +219,11 @@ a.menu1:link {
 	padding: 0px 10px 0px 12px;
 }
 
+
 a.menu1:visited {
 	color: #3F3F3D;
 }
+
 
 a.menu1:active, a.menu1:focus, a.menu1:hover {
 	color: #ffffff;
@@ -252,6 +237,7 @@ a.menu1akt:link {
 	font-weight:bold; 
 	padding:0px 10px 0px 12px;
 }
+
 
 a.menu1akt:visited {
 	color: #ffffff;

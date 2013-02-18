@@ -22,7 +22,7 @@
 			<p><b>Buchungsnr:</b> <%= @buchung.id %></p>
 			<p><b>Anfangszeit:</b> <%= @buchung.anfangszeit %></p>
 			<p><b>Endzeit:</b> <%= @buchung.endzeit %></p>
-			<p><b>Raum:</b> <%= Raum.find_by_id(@buchung.raum_id).name %></p>
+			<p><b>Raum:</b> <%= @buchung.raum_id %></p> 	<!-- TODO Raum als Name sollte angezeigt werden(nicht als zahl) -->	
 			<p><b>Kunde:</b> <%@k_name=Kunde.find(@buchung.kunde_id)%> <%= @k_name.name %></p>											
 			<p id="notice"><%= notice %></p>							
 		</div>
