@@ -377,6 +377,15 @@ div.villaText {
     	max-width: 360px;
 }
 
+div.flash_notice {
+    	color: red;
+    	font-weight:bold; 
+}
+
+div.flash_notice1 {
+    	color: green;
+    	font-weight:bold; 
+}
 
 padding:0px 10px 0px 12px;
  

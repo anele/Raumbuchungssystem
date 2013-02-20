@@ -78,7 +78,7 @@ class BuchungsController < ApplicationController
     
     respond_to do |format|
       if @buchung.update_attributes(params[:buchung])
-        format.html { redirect_to @buchung, notice: 'Buchung was successfully updated.' }
+        format.html { redirect_to @buchung, notice: 'Buchung wurde erfolgreich geaendert.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -107,7 +107,7 @@ class BuchungsController < ApplicationController
     
     respond_to do |format|
       if @buchung.update_attributes(params[:buchung])
-        format.html { redirect_to @buchung, notice: 'Buchung was successfully updated.' }
+        format.html { redirect_to @buchung, notice: 'Buchung wurde erfolgreich geaendert.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

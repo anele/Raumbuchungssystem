@@ -13,6 +13,11 @@
         <img src="/assets/pix_weiss_01.gif" width="215" height="97">
        </td>
        <td>&nbsp;</td>
+       <% if flash[:notice] %>
+        <div class="flash_notice1">
+          <%= flash[:notice] %>
+        </div>
+    <% end %>  
        <td class="head">Die Villa am See</td>
        <td>&nbsp;</td>
        <td><a href="http://www.htwg-konstanz.de" target="_blank"><img src="/assets/logo_htwg.jpg" width="245" height="97" border="0"></a></td>

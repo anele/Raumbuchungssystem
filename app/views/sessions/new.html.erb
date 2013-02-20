@@ -30,6 +30,7 @@
 						<td width="380" align="left" valign="top">
 						<div width="100" >
 
+
 <%= form_tag sessions_path do %>
   <div class="field">
     <%= label_tag :email,nil, :style=>"width: 100px; margin-right:24.0px;"%>
@@ -39,6 +40,12 @@
     <%= label_tag :password %>
     <%= password_field_tag :password,nil,:style=>"width: 200px;" %>
   </div>
+  
+    <% if flash[:notice] %>
+        <div class="flash_notice">
+          <%= flash[:notice] %>
+        </div>
+    <% end %>    
   <div class="actions"><%= submit_tag "Log in" %></div>
 <% end %>
 
